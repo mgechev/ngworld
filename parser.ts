@@ -1,7 +1,8 @@
 import { ProjectSymbols } from 'ngast';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync, readFile } from 'fs';
 import { bgRed } from 'chalk';
 import * as minimist from 'minimist'
+import { createProgramFromTsConfig } from './create-program';
 
 const projectPath = (minimist(process.argv.slice(2)) as any).p;
 
@@ -19,6 +20,14 @@ if (!existsSync(projectPath)) {
   process.exit(1);
 }
 
-// const project = new ProjectSymbols(() => {
+const project = new ProjectSymbols({ create: () => createProgramFromTsConfig(projectPath)  }, {
+  getSync: (path: string) => readFileSync(path).toString(),
+  get: (path: string) =>
+    new Promise((resolve, reject) =>
+      readFile(path, (error, content) => error ? reject(error) : resolve(content.toString())))
+});
 
-// });
+const context = project.getRootContext();
+const modules = context.getModules();
+
+console.log(modules);
