@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readFile } from 'fs';
 import { bgRed } from 'chalk';
 import * as minimist from 'minimist'
 import { createProgramFromTsConfig } from './create-program';
+import { formatContext } from './formatters';
 
 const projectPath = (minimist(process.argv.slice(2)) as any).p;
 
@@ -28,6 +29,4 @@ const project = new ProjectSymbols({ create: () => createProgramFromTsConfig(pro
 });
 
 const context = project.getRootContext();
-const modules = context.getModules();
-
-console.log(modules);
+console.log(formatContext(context));
