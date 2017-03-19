@@ -29,4 +29,4 @@ const project = new ProjectSymbols({ create: () => createProgramFromTsConfig(pro
 });
 
 const context = project.getRootContext();
-console.log(formatContext(context));
+console.log(JSON.stringify(formatContext(context), null, 2));
