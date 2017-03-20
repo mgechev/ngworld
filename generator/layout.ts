@@ -1,45 +1,46 @@
 import { Module, Component } from '../parser/formatters';
 
-const GardenHeight = 30;
-const TreeWidth = 10;
-const TreeDepth = 10;
-const TreeMargin = 2.5;
-const WallThickness = 1;
-const GroundZ = 0;
-const InitialX = 0;
-const InitialY = 0;
+export const GardenHeight = 12;
+export const TreeWidth = 3;
+export const TreeDepth = 3;
+export const TreeMargin = 4;
+export const GardenMargin = 5;
+export const WallThickness = 0.5;
+export const GroundY = 2.5;
+export const InitialX = 0;
+export const InitialZ = 0;
 
-interface Size {
+export interface Size {
   width: number;
   height: number;
   depth: number;
 }
 
-interface Position {
+export interface Position {
   x: number;
   y: number;
   z: number;
 }
 
-interface LeafLayout {
+export interface LeafLayout {
   name: string;
   position: Position;
 }
 
-interface TreeLayout {
+export interface TreeLayout {
   name: string;
   position: Position;
   leafs: LeafLayout[];
 }
 
-interface GardenLayout {
+export interface GardenLayout {
   name: string;
   size: Size;
   position: Position;
   trees: TreeLayout[];
 }
 
-interface WorldLayout {
+export interface WorldLayout {
   size: Size;
   gardens: GardenLayout[];
 }
@@ -51,10 +52,10 @@ const getWorldSize = (modules: GardenLayout[]) => {
 // We have less trees compared to previous layer
 const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: Position): TreeLayout[] => {
   const perRow = Math.floor(prevSize.width / (2 * TreeMargin + TreeWidth));
-  const initialX = prevPosition.x + prevSize.width + 2 * WallThickness + TreeDepth;
+  const initialX = prevPosition.x + prevSize.width + 2 * WallThickness + TreeMargin;
+  const maxX = initialX + perRow * (TreeWidth + 2 * TreeMargin);
   let currentX = initialX;
-  const maxX = initialX + perRow * TreeWidth;
-  let currentY = prevPosition.y + WallThickness;
+  let currentZ = prevPosition.z - WallThickness - TreeMargin;
   const result: TreeLayout[] = [];
   for (let i = 0; i < components.length; i += 1) {
     const c = components[i];
@@ -62,15 +63,15 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
       name: c.name,
       position: {
         x: currentX,
-        y: currentY,
-        z: GroundZ
+        y: GroundY,
+        z: currentZ
       },
       leafs: []
     });
     currentX += TreeWidth + TreeMargin;
     if (currentX >= maxX) {
       currentX = initialX;
-      currentY += TreeMargin + TreeDepth;
+      currentZ += TreeMargin + TreeDepth;
     }
   }
   return result;
@@ -78,11 +79,11 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
 
 const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
   const initialX = InitialX + TreeMargin + WallThickness;
-  const initialY = InitialY + TreeMargin + WallThickness;
+  const initialZ = InitialZ + TreeMargin + WallThickness;
   const perRow = Math.floor(Math.sqrt(components.length));
-  const maxX = initialX + perRow * TreeWidth;
+  const maxX = initialX + perRow * (TreeWidth + 2 * TreeMargin);
   let currentX = initialX;
-  let currentY = initialY;
+  let currentZ = initialZ;
   const result: TreeLayout[] = [];
   for (let i = 0; i < components.length; i += 1) {
     const c = components[i];
@@ -90,15 +91,15 @@ const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
       name: c.name,
       position: {
         x: currentX,
-        y: currentY,
-        z: GroundZ
+        y: GroundY,
+        z: currentZ
       },
       leafs: []
     });
     currentX += TreeWidth + TreeMargin;
     if (currentX >= maxX) {
       currentX = initialX;
-      currentY += TreeMargin + TreeDepth;
+      currentZ += TreeMargin + TreeDepth;
     }
   }
   return result;
@@ -107,15 +108,22 @@ const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
 const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) => {
   if (prevGarden) {
     const trees = getTreesLayout(module.components, prevGarden.size, prevGarden.position);
+    let maxX = -Infinity;
+    for (let i = 0; i < trees.length; i += 1) {
+      const t = trees[i];
+      if (maxX < t.position.x) {
+        maxX = t.position.x;
+      } 
+    }
     const result: GardenLayout = {
       name: module.name,
       size: {
         depth: prevGarden.size.depth,
-        height: GardenHeight,
-        width: 123
+        width: (maxX - (prevGarden.position.x + prevGarden.size.width)) + WallThickness + TreeMargin,
+        height: GardenHeight
       },
       position: {
-        x: prevGarden.position.x + prevGarden.size.width,
+        x: prevGarden.position.x + prevGarden.size.width + GardenMargin,
         y: prevGarden.position.y,
         z: prevGarden.position.z
       },
@@ -125,37 +133,39 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
   } else {
     const trees = getInitialTreesLayout(module.components);
     let minX = Infinity;
-    let minY = Infinity;
+    let minZ = Infinity;
     let maxX = -Infinity;
-    let maxY = -Infinity;
+    let maxZ = -Infinity;
     for (let i = 0; i < trees.length; i += 1) {
       const t = trees[i];
       if (maxX < t.position.x) {
         maxX = t.position.x;
       } 
-      if (maxY < t.position.y) {
-        maxY = t.position.y;
+      if (maxZ < t.position.z) {
+        maxZ = t.position.z;
       } 
       if (minX > t.position.x) {
         minX = t.position.x;
       }
-      if (minY > t.position.y) {
-        minY = t.position.y;
+      if (minZ > t.position.z) {
+        minZ = t.position.z;
       }
     }
     minX -= (TreeMargin + WallThickness);
-    minY -= (TreeMargin + WallThickness);
+    minZ -= (TreeMargin + WallThickness);
+    maxX += (TreeMargin + WallThickness);
+    maxZ += (TreeMargin + WallThickness);
     const result: GardenLayout = {
       name: module.name,
       size: {
-        height: 123,
-        width: maxX + WallThickness + TreeMargin,
-        depth: maxY + WallThickness + TreeMargin
+        height: GardenHeight,
+        width: maxX - minX,
+        depth: maxZ - minZ
       },
       position: {
-        x: minX,
-        y: minY,
-        z: GroundZ
+        x: minX + 2* (TreeMargin + WallThickness),
+        y: GroundY,
+        z: minZ + 2* (TreeMargin + WallThickness)
       },
       trees
     };
@@ -172,19 +182,10 @@ const getGardensLayout = (modules: Module[]): GardenLayout[] => {
   return result;
 };
 
-const createWorldLayout = (modules: Module[]): WorldLayout => {
+export const createWorldLayout = (modules: Module[]): WorldLayout => {
   const gardens = getGardensLayout(modules);
   return {
     size: getWorldSize(gardens),
     gardens
   };
-};
-
-const renderWorld = (layout: WorldLayout) => {
-  console.log(JSON.stringify(layout, null, 2));
-};
-
-export const generate = (modules: Module[]) => {
-  let layout = createWorldLayout(modules);
-  return renderWorld(layout);
 };

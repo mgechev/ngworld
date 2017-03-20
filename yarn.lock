@@ -32,6 +32,10 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
 
+"@types/mustache@^0.8.29":
+  version "0.8.29"
+  resolved "https://registry.yarnpkg.com/@types/mustache/-/mustache-0.8.29.tgz#7a6f13e8f23ff5bcbaaec484888400b2a4427b41"
+
 "@types/node@^7.0.8":
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.8.tgz#25e4dd804b630c916ae671233e6d71f6ce18124a"
@@ -1905,6 +1909,10 @@ multipipe@^0.1.2:
   resolved "https://registry.yarnpkg.com/multipipe/-/multipipe-0.1.2.tgz#2a8f2ddf70eed564dff2d57f1e1a137d9f05078b"
   dependencies:
     duplexer2 "0.0.2"
+
+mustache@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.0.tgz#4028f7778b17708a489930a6e52ac3bca0da41d0"
 
 natives@^1.1.0:
   version "1.1.0"

@@ -1,6 +1,7 @@
 import { Module } from '../parser/formatters';
 import { bgRed } from 'chalk';
-import { generate } from './generate';
+import { createWorldLayout } from './layout';
+import { renderWorld } from './renderer';
 
 let res = '';
 
@@ -15,5 +16,5 @@ process.stdin.on('end', _ => {
   } catch (e) {
     console.error(bgRed.white('Error while parsing the project structure', e));
   }
-  generate(data)
+  renderWorld(createWorldLayout(data));
 });
