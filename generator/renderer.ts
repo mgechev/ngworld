@@ -55,33 +55,24 @@ const TreeTemplate = `
 </a-entity>
 `;
 
-// const LeafTemplate = `
-// <a-entity
-//   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
-//   position="{{x}} {{y}} {{z}}"
-//   rotation="{{rotateX}} {{rotateY}} {{rotateZ}}"
-//   material="shader: standard; metalness: 0.6; src: url(images/leaves.jpg); repeat: 1 4">
-// </a-entity>
-// `;
-
 const LeafTemplate = `
 <a-entity
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
   material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
-  <a-entity position="0 0 0.15"
+  <a-entity position="0 0 {{halfLeaf}}"
     rotation="0 0 0"
     text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
-  <a-entity position="-0.15 0 0"
+  <a-entity position="-{{halfLeaf}} 0 0"
     rotation="0 -90 0"
     text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
-  <a-entity position="0.15 0 0"
+  <a-entity position="{{halfLeaf}} 0 0"
     rotation="0 90 0"
     text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
-  <a-entity position="0 0 -0.15"
+  <a-entity position="0 0 -{{halfLeaf}}"
     rotation="0 180 0"
     text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
@@ -147,6 +138,7 @@ interface LeafProperties {
   width: number;
   height: number;
   depth: number;
+  halfLeaf: number;
 }
 
 interface TreeProperties {
@@ -180,11 +172,11 @@ interface BoxProperties {
 }
 
 const DoorSize = { width: 3, height: 6 };
-const TreeHeight = 3;
+const TreeHeight = 7;
 const TreeBase = 1;
-const LeafHeight = 0.3;
-const LeafWidth = 0.3;
-const LeafDepth = 0.3;
+const LeafHeight = 0.7;
+const LeafWidth = 0.7;
+const LeafDepth = 0.7;
 
 const getFrontWalls = (garden: GardenLayout) => {
   const frontWidth = garden.size.width;
@@ -276,46 +268,6 @@ const getSideWalls = (garden: GardenLayout) => {
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
 
-// const getLeaves = (leaves: leaveset[], position: {x: number, y: number, z: number}) => {
-//   const totalLevels = leaves.length;
-//   // const levelDisplacement = (TreeHeight - TreeBase) / totalLevels;
-//   const levelDisplacement = 0.4;
-
-//   const renderLevel = (leaves: leaveset, level: number) => {
-//     let currentRotation = Math.ceil(360 * Math.random());
-//     const result: string[] = [];
-//     for (let i = 0; i < leaves.length; i += 1) {
-//       let leaf = leaves[i];
-//       const leafProps: LeafProperties = {
-//         label: leaf.label,
-//         color: leaf.type === LeafType.Plain ? 'green' : 'yellow',
-//         x: position.x,
-//         y: TreeHeight - 2 - level * levelDisplacement,
-//         z: position.z,
-//         rotateX: 30 + Math.random() * 20,
-//         rotateY: currentRotation,
-//         rotateZ: 0,
-//         width: 0.8,
-//         height: 0.16,
-//         depth: 1.2
-//       };
-//       result.push(render(LeafTemplate, leafProps));
-//       if (i % 2) {
-//         currentRotation += 90;
-//       } else {
-//         currentRotation = 360 / i;
-//       }
-//     }
-//     return result.join('\n');
-//   };
-
-//   let result = '';
-//   for (let i = 0; i < leaves.length; i += 1) {
-//     result += renderLevel(leaves[i], i);
-//   }
-//   return result;
-// };
-
 const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: number}) => {
   const totalLevels = leaveSets.length;
 
@@ -340,6 +292,7 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
         width: LeafWidth,
         height: LeafHeight,
         depth: LeafDepth,
+        halfLeaf: LeafWidth / 2
       };
       result.push(render(LeafTemplate, leafProps));
       currentX += LeafWidth;
@@ -436,11 +389,11 @@ const renderFrame = (p: Position, size: Size) => {
 
 const renderFloor = (p: Position, s: Size) => {
   const template: FloorProperties = {
-    x: 0,
+    x: p.x,
     y: -0.2,
-    z: 0,
-    width: 400,
-    depth: 400
+    z: p.z,
+    width: s.width + p.x,
+    depth: s.depth + p.z
   };
   return render(FloorTemplate, template);
 };
