@@ -10,7 +10,7 @@ const Header =
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>ng-world</title>
   <script src="./node_modules/aframe/dist/aframe-master.js"></script>
   <script src="./node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
 </head>
@@ -20,11 +20,11 @@ const Header =
   <a-entity geometry="primitive: plane; height: 18; width: 9.24" position="125 4.96 2.15" rotation="-90 270 0" material="shader: flat; 
   src: url(images/workflow.png)"></a-entity>
 `;
-const Footer = 
-`
-  <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
+
+const Footer = `
+<a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
   <!-- Camera -->
-  <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 6" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
+  <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 45" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
   <a-entity id="cursor" cursor="fuse: true; maxDistance: 5; timeout: 1" geometry="primitive: sphere; radius: 1;" material="color: red; opacity: 1;" position="0 -10 0" raycaster=""></a-entity>
   <a-animation attribute="position" begin="roof" dur="0" to="134 8 2.1"></a-animation>
   <a-animation attribute="position" begin="start" dur="0" to="125 1.8 2.1"></a-animation>
@@ -399,7 +399,6 @@ const renderFloor = (p: Position, s: Size) => {
 };
 
 export const renderWorld = (layout: WorldLayout) => {
-  // console.log(JSON.stringify(layout, null, 2));
   const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
