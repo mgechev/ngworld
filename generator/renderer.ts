@@ -1,5 +1,5 @@
 import { Module, Component } from '../parser/formatters';
-import { WorldLayout, GardenLayout, WallThickness, TreeLayout, leaveset, LeafType } from './layout';
+import { WorldLayout, GardenLayout, WallThickness, TreeLayout, LeaveSet, LeafType } from './layout';
 import { render } from 'mustache';
 import { writeFileSync } from 'fs';
 
@@ -44,12 +44,22 @@ const TreeTemplate = `
 </a-entity>
 `;
 
+// const LeafTemplate = `
+// <a-entity
+//   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
+//   position="{{x}} {{y}} {{z}}"
+//   rotation="{{rotateX}} {{rotateY}} {{rotateZ}}"
+//   material="shader: standard; metalness: 0.6; src: url(images/leaves.jpg); repeat: 1 4">
+// </a-entity>
+// `;
+
 const LeafTemplate = `
 <a-entity
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
-  rotation="{{rotateX}} {{rotateY}} {{rotateZ}}"
-  material="shader: standard; metalness: 0.6; src: url(images/leaves.jpg); repeat: 1 4">
+  material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+  <a-entity position="0 0 0" text="width: 2; color: white; align: center; value: {{label}};">
+  </a-entity>
 </a-entity>
 `;
 
@@ -75,9 +85,9 @@ interface LeafProperties {
   y: number;
   z: number;
   label: string;
-  rotateX: number;
-  rotateY: number;
-  rotateZ: number;
+  // rotateX: number;
+  // rotateY: number;
+  // rotateZ: number;
   width: number;
   height: number;
   depth: number;
@@ -113,8 +123,11 @@ interface BoxProperties {
 }
 
 const DoorSize = { width: 3, height: 6 };
-const TreeHeight = 4;
+const TreeHeight = 3;
 const TreeBase = 1;
+const LeafHeight = 0.3;
+const LeafWidth = 0.3;
+const LeafDepth = 0.3;
 
 const getFrontWalls = (garden: GardenLayout) => {
   const frontWidth = garden.size.width;
@@ -206,42 +219,83 @@ const getSideWalls = (garden: GardenLayout) => {
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
 
-const getLeaves = (leaves: leaveset[], position: {x: number, y: number, z: number}) => {
-  const totalLevels = leaves.length;
-  // const levelDisplacement = (TreeHeight - TreeBase) / totalLevels;
-  const levelDisplacement = 0.4;
+// const getLeaves = (leaves: leaveset[], position: {x: number, y: number, z: number}) => {
+//   const totalLevels = leaves.length;
+//   // const levelDisplacement = (TreeHeight - TreeBase) / totalLevels;
+//   const levelDisplacement = 0.4;
 
-  const renderLevel = (leaves: leaveset, level: number) => {
-    let currentRotation = Math.ceil(360 * Math.random());
+//   const renderLevel = (leaves: leaveset, level: number) => {
+//     let currentRotation = Math.ceil(360 * Math.random());
+//     const result: string[] = [];
+//     for (let i = 0; i < leaves.length; i += 1) {
+//       let leaf = leaves[i];
+//       const leafProps: LeafProperties = {
+//         label: leaf.label,
+//         color: leaf.type === LeafType.Plain ? 'green' : 'yellow',
+//         x: position.x,
+//         y: TreeHeight - 2 - level * levelDisplacement,
+//         z: position.z,
+//         rotateX: 30 + Math.random() * 20,
+//         rotateY: currentRotation,
+//         rotateZ: 0,
+//         width: 0.8,
+//         height: 0.16,
+//         depth: 1.2
+//       };
+//       result.push(render(LeafTemplate, leafProps));
+//       if (i % 2) {
+//         currentRotation += 90;
+//       } else {
+//         currentRotation = 360 / i;
+//       }
+//     }
+//     return result.join('\n');
+//   };
+
+//   let result = '';
+//   for (let i = 0; i < leaves.length; i += 1) {
+//     result += renderLevel(leaves[i], i);
+//   }
+//   return result;
+// };
+
+const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: number}) => {
+  const totalLevels = leaveSets.length;
+
+  const renderLevel = (leaves: LeaveSet, level: number) => {
+    const fromBottom = (leaveSets.length - 1 - level) * LeafHeight + TreeHeight / 2 - LeafHeight;
+    console.log(fromBottom, level);
+    const perRow = Math.ceil(Math.sqrt(leaves.length));
     const result: string[] = [];
+    let rowXWidth = perRow * LeafWidth;
+    const initialX = position.x - rowXWidth / 2 + LeafWidth - 0.5 * LeafWidth;
+    let currentX = initialX;
+    let currentZ = position.z - rowXWidth / 2 + LeafWidth;
     for (let i = 0; i < leaves.length; i += 1) {
       let leaf = leaves[i];
       const leafProps: LeafProperties = {
         label: leaf.label,
-        color: leaf.type === LeafType.Plain ? 'green' : 'yellow',
-        x: position.x,
-        y: TreeHeight - 2 - level * levelDisplacement,
-        z: position.z,
-        rotateX: 30 + Math.random() * 20,
-        rotateY: currentRotation,
-        rotateZ: 0,
-        width: 0.8,
-        height: 0.16,
-        depth: 1.2
+        color: leaf.type === LeafType.Plain ? '#8CB300' : '#C1F01A',
+        x: currentX,
+        y: fromBottom,
+        z: currentZ,
+        width: LeafWidth,
+        height: LeafHeight,
+        depth: LeafDepth
       };
       result.push(render(LeafTemplate, leafProps));
-      if (i % 2) {
-        currentRotation += 90;
-      } else {
-        currentRotation = 360 / i;
+      currentX += LeafWidth;
+      if (currentX > rowXWidth + initialX) {
+        currentX = initialX;
+        currentZ += LeafDepth;
       }
     }
     return result.join('\n');
   };
 
   let result = '';
-  for (let i = 0; i < leaves.length; i += 1) {
-    result += renderLevel(leaves[i], i);
+  for (let i = leaveSets.length - 1; i >= 0; i -= 1) {
+    result += renderLevel(leaveSets[i], i);
   }
   return result;
 };

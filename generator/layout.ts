@@ -32,12 +32,12 @@ export interface Leaf {
   type: LeafType;
 }
 
-export type leaveset = Leaf[];
+export type LeaveSet = Leaf[];
 
 export interface TreeLayout {
   name: string;
   position: Position;
-  leaves: leaveset[];
+  leaves: LeaveSet[];
 }
 
 export interface GardenLayout {
@@ -57,7 +57,7 @@ const getWorldSize = (modules: GardenLayout[]) => {
 };
 
 const getLeaves = (template: Node[]) => {
-  const result: leaveset[] = [];
+  const result: LeaveSet[] = [];
   const buildResult = (level: number, node: Node) => {
     if (!result[level]) {
       result[level] = [];
