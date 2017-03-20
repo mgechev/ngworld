@@ -10,7 +10,7 @@ const Header =
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ng-world</title>
+  <title>ngworld</title>
   <script src="./node_modules/aframe/dist/aframe-master.js"></script>
   <script src="./node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
 </head>
@@ -398,9 +398,9 @@ const renderFloor = (p: Position, s: Size) => {
   return render(FloorTemplate, template);
 };
 
-export const renderWorld = (layout: WorldLayout) => {
+export const renderWorld = (layout: WorldLayout, fileName: string) => {
   const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
-  writeFileSync('index2.html', Header + gardens + frame + floor + Footer);
+  writeFileSync(fileName, Header + gardens + frame + floor + Footer);
 };

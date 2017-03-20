@@ -2,6 +2,7 @@ import { ProjectSymbols } from 'ngast';
 import { existsSync, readFileSync, readFile } from 'fs';
 import { bgRed } from 'chalk';
 import * as minimist from 'minimist'
+
 import { createProgramFromTsConfig } from './create-program';
 import { formatContext } from './formatters';
 
