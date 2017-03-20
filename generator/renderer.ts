@@ -41,6 +41,8 @@ const TreeTemplate = `
 <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
+  </a-entity>
 </a-entity>
 `;
 
@@ -58,10 +60,36 @@ const LeafTemplate = `
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
   material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
-  <a-entity position="0 0 0" text="width: 2; color: white; align: center; value: {{label}};">
+  <a-entity position="{{labelX}} 0 {{labelZ}}"
+    rotation="0 {{labelRotateY}} 0"
+    text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
 </a-entity>
 `;
+
+const FrontLeafLabelProps = {
+  labelX: 0,
+  labelZ: 0.15,
+  labelRotateY: 0
+};
+
+const LeftLeafLabelProps = {
+  labelX: -0.15,
+  labelZ: 0,
+  labelRotateY: -90
+};
+
+const RightLeafLabelProps = {
+  labelX: 0.15,
+  labelZ: 0,
+  labelRotateY: 90
+};
+
+const BackLeafLabelProps = {
+  labelX: 0,
+  labelZ: -0.15,
+  labelRotateY: 180
+};
 
 const BoxTemplate = `
 <a-entity
@@ -85,9 +113,9 @@ interface LeafProperties {
   y: number;
   z: number;
   label: string;
-  // rotateX: number;
-  // rotateY: number;
-  // rotateZ: number;
+  labelX: number;
+  labelZ: number;
+  labelRotateY: number;
   width: number;
   height: number;
   depth: number;
@@ -98,6 +126,7 @@ interface TreeProperties {
   y: number;
   z: number;
   height: number;
+  label: string;
 }
 
 interface LabelProperties {
@@ -269,11 +298,12 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
     const result: string[] = [];
     let rowXWidth = perRow * LeafWidth;
     const initialX = position.x - rowXWidth / 2 + LeafWidth - 0.5 * LeafWidth;
+    const initialZ = position.z - rowXWidth / 2 + LeafWidth;
     let currentX = initialX;
-    let currentZ = position.z - rowXWidth / 2 + LeafWidth;
+    let currentZ = initialZ;
     for (let i = 0; i < leaves.length; i += 1) {
       let leaf = leaves[i];
-      const leafProps: LeafProperties = {
+      let leafProps: LeafProperties = {
         label: leaf.label,
         color: leaf.type === LeafType.Plain ? '#8CB300' : '#C1F01A',
         x: currentX,
@@ -281,8 +311,23 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
         z: currentZ,
         width: LeafWidth,
         height: LeafHeight,
-        depth: LeafDepth
+        depth: LeafDepth,
+        labelX: 0,
+        labelZ: 0,
+        labelRotateY: 0
       };
+      if (initialX === currentX) {
+        leafProps = Object.assign({}, leafProps, LeftLeafLabelProps);
+      } else if (currentX + LeafWidth >= rowXWidth + initialX) {
+        leafProps = Object.assign({}, leafProps, RightLeafLabelProps);
+      } else if (currentZ === initialZ) {
+        console.log(leafProps.label);
+        leafProps = Object.assign({}, leafProps, FrontLeafLabelProps);
+        leafProps.labelZ += LeafWidth;
+      } else {
+        leafProps = Object.assign({}, leafProps, BackLeafLabelProps);
+        leafProps.labelZ -= LeafWidth;
+      }
       result.push(render(LeafTemplate, leafProps));
       currentX += LeafWidth;
       if (currentX > rowXWidth + initialX) {
@@ -305,7 +350,8 @@ const getTrees = (trees: TreeLayout[]) => {
     x: t.position.x,
     z: t.position.z,
     y: 0,
-    height: TreeHeight
+    height: TreeHeight,
+    label: t.name
   }, t]).map(([props, layout]: [TreeProperties, TreeLayout]) => {
     const leaves = getLeaves(layout.leaves, {
       x: layout.position.x,
