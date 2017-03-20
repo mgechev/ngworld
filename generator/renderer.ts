@@ -1,5 +1,5 @@
 import { Module, Component } from '../parser/formatters';
-import { WorldLayout, GardenLayout, WallThickness, TreeLayout } from './layout';
+import { WorldLayout, GardenLayout, WallThickness, TreeLayout, leaveset, LeafType } from './layout';
 import { render } from 'mustache';
 import { writeFileSync } from 'fs';
 
@@ -38,15 +38,15 @@ const Footer =
 `;
 
 const TreeTemplate = `
-<a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 4; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 4; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 4; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  {{leafs}}
+<a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
 </a-entity>
 `;
+
 const LeafTemplate = `
 <a-entity
-  geometry="primitive: box; depth: {{depth}}; height: 0.8; width: {{width}}"
+  geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
   rotation="{{rotateX}} {{rotateY}} {{rotateZ}}"
   material="shader: standard; metalness: 0.6; src: url(images/leaves.jpg); repeat: 1 4">
@@ -68,6 +68,27 @@ const BoxTemplate = `
 const ModuleLabel = `
 <a-entity position="{{x}} {{y}} {{z}}" text="width: {{width}}; color: {{color}}; align: {{align}}; value: {{label}};"></a-entity>
 `;
+
+interface LeafProperties {
+  color: string;
+  x: number;
+  y: number;
+  z: number;
+  label: string;
+  rotateX: number;
+  rotateY: number;
+  rotateZ: number;
+  width: number;
+  height: number;
+  depth: number;
+}
+
+interface TreeProperties {
+  x: number;
+  y: number;
+  z: number;
+  height: number;
+}
 
 interface LabelProperties {
   label: string;
@@ -92,6 +113,8 @@ interface BoxProperties {
 }
 
 const DoorSize = { width: 3, height: 6 };
+const TreeHeight = 4;
+const TreeBase = 1;
 
 const getFrontWalls = (garden: GardenLayout) => {
   const frontWidth = garden.size.width;
@@ -183,11 +206,60 @@ const getSideWalls = (garden: GardenLayout) => {
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
 
+const getLeaves = (leaves: leaveset[], position: {x: number, y: number, z: number}) => {
+  const totalLevels = leaves.length;
+  // const levelDisplacement = (TreeHeight - TreeBase) / totalLevels;
+  const levelDisplacement = 0.4;
+
+  const renderLevel = (leaves: leaveset, level: number) => {
+    let currentRotation = Math.ceil(360 * Math.random());
+    const result: string[] = [];
+    for (let i = 0; i < leaves.length; i += 1) {
+      let leaf = leaves[i];
+      const leafProps: LeafProperties = {
+        label: leaf.label,
+        color: leaf.type === LeafType.Plain ? 'green' : 'yellow',
+        x: position.x,
+        y: TreeHeight - 2 - level * levelDisplacement,
+        z: position.z,
+        rotateX: 30 + Math.random() * 20,
+        rotateY: currentRotation,
+        rotateZ: 0,
+        width: 0.8,
+        height: 0.16,
+        depth: 1.2
+      };
+      result.push(render(LeafTemplate, leafProps));
+      if (i % 2) {
+        currentRotation += 90;
+      } else {
+        currentRotation = 360 / i;
+      }
+    }
+    return result.join('\n');
+  };
+
+  let result = '';
+  for (let i = 0; i < leaves.length; i += 1) {
+    result += renderLevel(leaves[i], i);
+  }
+  return result;
+};
+
 const getTrees = (trees: TreeLayout[]) => {
-  return trees.map(t => {
-    t.position.y = 0;
-    return t;
-  }).map(t => render(TreeTemplate, t.position));
+  return trees.map(t => [{
+    x: t.position.x,
+    z: t.position.z,
+    y: 0,
+    height: TreeHeight
+  }, t]).map(([props, layout]: [TreeProperties, TreeLayout]) => {
+    const leaves = getLeaves(layout.leaves, {
+      x: layout.position.x,
+      z: layout.position.z,
+      y: 0
+    });
+    return render(TreeTemplate, props) + leaves;
+  }).join('\n');
 };
 
 const renderGarden = (garden: GardenLayout) => {

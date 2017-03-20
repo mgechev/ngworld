@@ -23,8 +23,14 @@ export interface Component {
   template: Node[];
 }
 
+export enum NodeType {
+  Plain,
+  Custom
+}
+
 export interface Node {
   name: string;
+  type: NodeType,
   children: Node[];
 }
 
@@ -35,13 +41,14 @@ const transformTemplateAst = (template: TemplateAst) => {
       if (child instanceof ElementAst) {
         const node = {
           name: child.name,
-          children: []
+          children: [],
+          type: child.directives.length ? NodeType.Custom : NodeType.Plain
         };
         parentNode.children.push(node);
         child.children.map(addNode.bind(null, node));
       }
     };
-    result = { name: template.name, children: [] };
+    result = { name: template.name, type: template.directives.length ? NodeType.Custom : NodeType.Plain, children: [] };
     template.children.forEach(addNode.bind(null, result));
   }
   return result;

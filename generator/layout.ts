@@ -1,4 +1,4 @@
-import { Module, Component } from '../parser/formatters';
+import { Module, Component, Node, NodeType } from '../parser/formatters';
 
 export const GardenHeight = 12;
 export const TreeWidth = 3;
@@ -22,15 +22,22 @@ export interface Position {
   z: number;
 }
 
-export interface LeafLayout {
-  name: string;
-  position: Position;
+export enum LeafType {
+  Plain,
+  Special
 }
+
+export interface Leaf {
+  label: string;
+  type: LeafType;
+}
+
+export type leaveset = Leaf[];
 
 export interface TreeLayout {
   name: string;
   position: Position;
-  leafs: LeafLayout[];
+  leaves: leaveset[];
 }
 
 export interface GardenLayout {
@@ -47,6 +54,22 @@ export interface WorldLayout {
 
 const getWorldSize = (modules: GardenLayout[]) => {
   return null;
+};
+
+const getLeaves = (template: Node[]) => {
+  const result: leaveset[] = [];
+  const buildResult = (level: number, node: Node) => {
+    if (!result[level]) {
+      result[level] = [];
+    }
+    result[level].push({
+      label: node.name,
+      type: node.type === NodeType.Custom ? LeafType.Special : LeafType.Plain
+    });
+    node.children.forEach(buildResult.bind(null, level + 1));
+  };
+  template.forEach(buildResult.bind(null, 0));
+  return result;
 };
 
 // We have less trees compared to previous layer
@@ -66,7 +89,7 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
         y: GroundY,
         z: currentZ
       },
-      leafs: []
+      leaves: getLeaves(c.template)
     });
     currentX += TreeWidth + TreeMargin;
     if (currentX >= maxX) {
@@ -94,7 +117,7 @@ const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
         y: GroundY,
         z: currentZ
       },
-      leafs: []
+      leaves: getLeaves(c.template)
     });
     currentX += TreeWidth + TreeMargin;
     if (currentX >= maxX) {
