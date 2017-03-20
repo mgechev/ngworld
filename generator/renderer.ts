@@ -293,7 +293,7 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
 
   const renderLevel = (leaves: LeaveSet, level: number) => {
     const fromBottom = (leaveSets.length - 1 - level) * LeafHeight + TreeHeight / 2 - LeafHeight;
-    console.log(fromBottom, level);
+    // console.log(fromBottom, level);
     const perRow = Math.ceil(Math.sqrt(leaves.length));
     const result: string[] = [];
     let rowXWidth = perRow * LeafWidth;
@@ -321,7 +321,6 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
       } else if (currentX + LeafWidth >= rowXWidth + initialX) {
         leafProps = Object.assign({}, leafProps, RightLeafLabelProps);
       } else if (currentZ === initialZ) {
-        console.log(leafProps.label);
         leafProps = Object.assign({}, leafProps, FrontLeafLabelProps);
         leafProps.labelZ += LeafWidth;
       } else {
@@ -367,7 +366,7 @@ const renderGarden = (garden: GardenLayout) => {
 };
 
 export const renderWorld = (layout: WorldLayout) => {
-  console.log(JSON.stringify(layout, null, 2));
+  // console.log(JSON.stringify(layout, null, 2));
   const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
   writeFileSync('index2.html', Header + gardens + Footer);
 };

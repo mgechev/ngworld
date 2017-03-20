@@ -104,7 +104,7 @@ const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
   const initialX = InitialX + TreeMargin + WallThickness;
   const initialZ = InitialZ + TreeMargin + WallThickness;
   const perRow = Math.floor(Math.sqrt(components.length));
-  const maxX = initialX + perRow * (TreeWidth + 2 * TreeMargin);
+  const maxX = initialX + perRow * (TreeWidth + TreeMargin);
   let currentX = initialX;
   let currentZ = initialZ;
   const result: TreeLayout[] = [];
@@ -186,9 +186,9 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
         depth: maxZ - minZ
       },
       position: {
-        x: minX + 2* (TreeMargin + WallThickness),
+        x: minX + (maxX - minX) / 2,
         y: GroundY,
-        z: minZ + 2* (TreeMargin + WallThickness)
+        z: minZ + (maxZ - minZ)
       },
       trees
     };
