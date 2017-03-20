@@ -1,5 +1,5 @@
 import { Module, Component } from '../parser/formatters';
-import { WorldLayout, GardenLayout, WallThickness, TreeLayout, LeaveSet, LeafType } from './layout';
+import { WorldLayout, GardenLayout, WallThickness, TreeLayout, LeaveSet, LeafType, Position, Size } from './layout';
 import { render } from 'mustache';
 import { writeFileSync } from 'fs';
 
@@ -22,7 +22,6 @@ const Header =
 `;
 const Footer = 
 `
-  <a-entity static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -0.2 0" rotation="-90 0 0" material="shader: flat; src: url(images/grass.jpg); repeat: 200 200"></a-entity>
   <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
   <!-- Camera -->
   <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 6" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
@@ -32,7 +31,17 @@ const Footer =
   </a-entity>
   <!-- Lighting and background -->
   <a-sky src="images/sky.jpg" radius="5000" material="color:#FFF;shader:flat;src:url(images/sky.jpg)" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="-1 1 1"></a-sky>
-  <a-entity light="color:#fff;type:ambient" data-aframe-default-light=""></a-entity><a-entity light="color:#fff;intensity:0.2" position="-1 2 1" data-aframe-default-light=""></a-entity><canvas class="a-canvas" width="1152" height="1598" style="height: 799px; width: 576px;"></canvas><div class="a-enter-vr" data-a-enter-vr-no-headset="" data-a-enter-vr-no-webvr=""><button class="a-enter-vr-button"></button><div class="a-enter-vr-modal"><p>Your browser does not support WebVR. To enter VR, use a VR-compatible browser or a mobile phone.</p><a href="http://mozvr.com/#start" target="_blank">Learn more.</a></div></div><div class="a-orientation-modal a-hidden"><button>Exit VR</button></div></a-scene>
+    <a-entity light="color:#fff;type:ambient" data-aframe-default-light=""></a-entity>
+    <a-entity light="color:#fff;intensity:0.2" position="-1 2 1" data-aframe-default-light=""></a-entity>
+    <canvas class="a-canvas" width="1152" height="1598" style="height: 799px; width: 576px;"></canvas>
+    <div class="a-enter-vr" data-a-enter-vr-no-headset="" data-a-enter-vr-no-webvr="">
+      <button class="a-enter-vr-button"></button>
+    <div class="a-enter-vr-modal">
+      <p>Your browser does not support WebVR. To enter VR, use a VR-compatible browser or a mobile phone.</p>
+      <a href="http://mozvr.com/#start" target="_blank">Learn more.</a>
+      </div>
+    </div>
+    <div class="a-orientation-modal a-hidden"><button>Exit VR</button></div></a-scene>
 </body>
 </html>
 `;
@@ -60,36 +69,24 @@ const LeafTemplate = `
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
   material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
-  <a-entity position="{{labelX}} 0 {{labelZ}}"
-    rotation="0 {{labelRotateY}} 0"
+  <a-entity position="0 0 0.15"
+    rotation="0 0 0"
+    text="side: double; width: 2; color: white; align: center; value: {{label}};">
+  </a-entity>
+  <a-entity position="-0.15 0 0"
+    rotation="0 -90 0"
+    text="side: double; width: 2; color: white; align: center; value: {{label}};">
+  </a-entity>
+  <a-entity position="0.15 0 0"
+    rotation="0 90 0"
+    text="side: double; width: 2; color: white; align: center; value: {{label}};">
+  </a-entity>
+  <a-entity position="0 0 -0.15"
+    rotation="0 180 0"
     text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
 </a-entity>
 `;
-
-const FrontLeafLabelProps = {
-  labelX: 0,
-  labelZ: 0.15,
-  labelRotateY: 0
-};
-
-const LeftLeafLabelProps = {
-  labelX: -0.15,
-  labelZ: 0,
-  labelRotateY: -90
-};
-
-const RightLeafLabelProps = {
-  labelX: 0.15,
-  labelZ: 0,
-  labelRotateY: 90
-};
-
-const BackLeafLabelProps = {
-  labelX: 0,
-  labelZ: -0.15,
-  labelRotateY: 180
-};
 
 const BoxTemplate = `
 <a-entity
@@ -103,9 +100,43 @@ const BoxTemplate = `
 </a-entity>
 `;
 
-const ModuleLabel = `
+const ModuleLabelTemplate = `
 <a-entity position="{{x}} {{y}} {{z}}" text="width: {{width}}; color: {{color}}; align: {{align}}; value: {{label}};"></a-entity>
 `;
+
+const FrameTemplate = `
+<a-entity
+  static-body=""
+  geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
+  position="{{x}} {{y}} {{z}}"
+  rotation="{{rotateX}} {{rotateY}} {{rotateZ}}"
+  material="shader: flat; src: url(images/mountain.jpg); repeat: 1 1">
+</a-entity>
+`;
+
+const FloorTemplate = `
+<a-entity static-body="" geometry="primitive: plane; height: {{depth}}; width: {{width}}" position="{{x}} {{y}} {{z}}" rotation="-90 0 0" material="shader: flat; src: url(images/grass.jpg); repeat: 200 200"></a-entity>
+`;
+
+interface FloorProperties {
+  depth: number;
+  width: number;
+  x: number;
+  y: number;
+  z: number;
+}
+
+interface FrameProperties {
+  x: number;
+  y: number;
+  z: number;
+  depth: number;
+  height: number;
+  width: number;
+  rotateX: number;
+  rotateY: number;
+  rotateZ: number;
+}
 
 interface LeafProperties {
   color: string;
@@ -113,9 +144,6 @@ interface LeafProperties {
   y: number;
   z: number;
   label: string;
-  labelX: number;
-  labelZ: number;
-  labelRotateY: number;
   width: number;
   height: number;
   depth: number;
@@ -205,7 +233,7 @@ const getFrontWalls = (garden: GardenLayout) => {
     color: 'white',
     width: garden.size.width
   };
-  return render(ModuleLabel, moduleLabel) +
+  return render(ModuleLabelTemplate, moduleLabel) +
     render(BoxTemplate, frontTop) +
     render(BoxTemplate, frontBottomLeft) +
     render(BoxTemplate, frontBottomRight);
@@ -312,21 +340,7 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
         width: LeafWidth,
         height: LeafHeight,
         depth: LeafDepth,
-        labelX: 0,
-        labelZ: 0,
-        labelRotateY: 0
       };
-      if (initialX === currentX) {
-        leafProps = Object.assign({}, leafProps, LeftLeafLabelProps);
-      } else if (currentX + LeafWidth >= rowXWidth + initialX) {
-        leafProps = Object.assign({}, leafProps, RightLeafLabelProps);
-      } else if (currentZ === initialZ) {
-        leafProps = Object.assign({}, leafProps, FrontLeafLabelProps);
-        leafProps.labelZ += LeafWidth;
-      } else {
-        leafProps = Object.assign({}, leafProps, BackLeafLabelProps);
-        leafProps.labelZ -= LeafWidth;
-      }
       result.push(render(LeafTemplate, leafProps));
       currentX += LeafWidth;
       if (currentX > rowXWidth + initialX) {
@@ -365,8 +379,76 @@ const renderGarden = (garden: GardenLayout) => {
   return getTrees(garden.trees) + getFrontWalls(garden) + getSideWalls(garden);
 };
 
+const renderFrame = (p: Position, size: Size) => {
+  const front: FrameProperties = {
+    x: p.x,
+    y: p.y,
+    z: p.z,
+    width: size.width,
+    depth: 1,
+    height: size.height,
+    rotateX: 0,
+    rotateY: 0,
+    rotateZ: 0
+  };
+
+  const back: FrameProperties = {
+    x: p.x,
+    y: p.y,
+    z: p.z - size.depth,
+    width: size.width,
+    depth: 1,
+    height: size.height,
+    rotateX: 0,
+    rotateY: 0,
+    rotateZ: 0
+  };
+
+  const left: FrameProperties = {
+    x: p.x - size.width / 2,
+    y: p.y,
+    z: p.z - size.depth / 2,
+    width: size.depth,
+    depth: 1,
+    height: size.height,
+    rotateX: 0,
+    rotateY: 90,
+    rotateZ: 0
+  };
+
+  const right: FrameProperties = {
+    x: p.x + size.width / 2,
+    y: p.y,
+    z: p.z - size.depth / 2,
+    width: size.depth,
+    depth: 1,
+    height: size.height,
+    rotateX: 0,
+    rotateY: 90,
+    rotateZ: 0
+  };
+
+  return render(FrameTemplate, front) +
+    render(FrameTemplate, back) +
+    render(FrameTemplate, left) +
+    render(FrameTemplate, right);
+};
+
+const renderFloor = (p: Position, s: Size) => {
+  const template: FloorProperties = {
+    x: 0,
+    y: -0.2,
+    z: 0,
+    width: 400,
+    depth: 400
+  };
+  return render(FloorTemplate, template);
+};
+
 export const renderWorld = (layout: WorldLayout) => {
   // console.log(JSON.stringify(layout, null, 2));
   const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
-  writeFileSync('index2.html', Header + gardens + Footer);
+  const frame = renderFrame(layout.position, layout.size);
+  const floor = renderFloor(layout.position, layout.size);
+  writeFileSync('index2.html', Header + gardens + frame + floor + Footer);
 };

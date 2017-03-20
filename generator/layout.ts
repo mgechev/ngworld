@@ -9,6 +9,8 @@ export const WallThickness = 0.5;
 export const GroundY = 2.5;
 export const InitialX = 0;
 export const InitialZ = 0;
+export const WorldPadding = 50;
+export const OuterWallHeight = 15;
 
 export interface Size {
   width: number;
@@ -49,11 +51,47 @@ export interface GardenLayout {
 
 export interface WorldLayout {
   size: Size;
+  position: Position;
   gardens: GardenLayout[];
 }
 
-const getWorldSize = (modules: GardenLayout[]) => {
-  return null;
+const getWorldLayout = (gardens: GardenLayout[]) => {
+  let minX = Infinity;
+  let minZ = Infinity;
+  let maxX = -Infinity;
+  let maxZ = -Infinity;
+  let x = 0;
+  let y = 0;
+  let z = 0;
+  let width = 0;
+  let height = 0;
+  let depth = 0;
+  for (let i = 0; i < gardens.length; i += 1) {
+    const t = gardens[i];
+    if (maxX < t.position.x) {
+      maxX = t.position.x;
+    } 
+    if (maxZ < t.position.z) {
+      maxZ = t.position.z;
+    } 
+    if (minX > t.position.x) {
+      minX = t.position.x;
+    }
+    if (minZ > t.position.z) {
+      minZ = t.position.z;
+    }
+  }
+  minX -= WorldPadding;
+  minZ -= WorldPadding;
+  maxX += WorldPadding;
+  maxZ += WorldPadding;
+  x = minX + (maxX - minX) / 2;
+  z = minZ + (maxZ - minZ);
+  y = GroundY;
+  width = maxX - minX;
+  depth = maxZ - minZ + WorldPadding;
+  height = OuterWallHeight;
+  return { size: { width, height, depth }, position: { x, y, z } };
 };
 
 const getLeaves = (template: Node[]) => {
@@ -207,8 +245,10 @@ const getGardensLayout = (modules: Module[]): GardenLayout[] => {
 
 export const createWorldLayout = (modules: Module[]): WorldLayout => {
   const gardens = getGardensLayout(modules);
+  const layout = getWorldLayout(gardens);
   return {
-    size: getWorldSize(gardens),
+    size: layout.size,
+    position: layout.position,
     gardens
   };
 };
