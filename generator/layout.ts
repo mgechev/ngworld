@@ -1,12 +1,12 @@
 import { Module, Component, Node, NodeType } from '../parser/formatters';
 
-export const GardenHeight = 12;
+export const GardenHeight = 1.5;
 export const TreeWidth = 3;
 export const TreeDepth = 3;
 export const TreeMargin = 4;
 export const GardenMargin = 5;
-export const WallThickness = 0.5;
-export const GroundY = 2.5;
+export const WallThickness = 0.1;
+export const GroundY = 0;
 export const InitialX = 0;
 export const InitialZ = 0;
 export const WorldPadding = 50;

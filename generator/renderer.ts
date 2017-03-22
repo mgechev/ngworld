@@ -85,15 +85,24 @@ const BoxTemplate = `
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
   rotation="{{rotateX}} {{rotateY}} {{rotateZ}}"
-  material="shader: flat;
-  src: url(images/logs.jpg);
-  repeat: {{width}} {{height}}">
+  material="shader: flat; transparent: true;
+  src: url(images/fence.jpg);
+  repeat: {{repeatWidth}} 1">
 </a-entity>
 `;
 
 const ModuleLabelTemplate = `
-<a-entity position="{{x}} {{y}} {{z}}" text="width: {{width}}; color: {{color}}; align: {{align}}; value: {{label}};"></a-entity>
+<a-entity static-body="" geometry="primitive: plane; height: 1.2; width: {{width}}" position="{{x}} {{y}} {{z}}" rotation="0 {{rotation}} 0" material="shader: flat; side: double; background: #ddd;">
+  <a-entity position="0 0 0" text="width: 4; color: #222; align: {{align}}; value: {{label}};"></a-entity>
+  <a-entity static-body="" geometry="primitive: plane; height: 1.5; width: 2" position="0 0 -0.02" rotation="0 0 0" material="shader: flat; side: double; src: url(images/wood.jpg); repeat: 2 2;"></a-entity>
+  <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
+  <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="-1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
+</a-entity>
 `;
+
+// const ModuleLabelTemplate = `
+// <a-entity position="{{x}} {{y}} {{z}}" text="width: {{width}}; color: {{color}}; align: {{align}}; value: {{label}};"></a-entity>
+// `;
 
 const FrameTemplate = `
 <a-entity
@@ -157,6 +166,7 @@ interface LabelProperties {
   z: number;
   color: string;
   width: number;
+  rotation: number;
 }
 
 interface BoxProperties {
@@ -169,9 +179,10 @@ interface BoxProperties {
   rotateX: number;
   rotateY: number;
   rotateZ: number;
+  repeatWidth: number;
 }
 
-const DoorSize = { width: 3, height: 6 };
+const DoorSize = { width: 3, height: 1.5 };
 const TreeHeight = 7;
 const TreeBase = 1;
 const LeafHeight = 0.7;
@@ -192,7 +203,8 @@ const getFrontWalls = (garden: GardenLayout) => {
     z: garden.position.z,
     rotateX: 0,
     rotateY: 0,
-    rotateZ: 0
+    rotateZ: 0,
+    repeatWidth: frontBottomPartWidth
   };
   const frontBottomRight: BoxProperties = {
     depth: WallThickness,
@@ -203,30 +215,32 @@ const getFrontWalls = (garden: GardenLayout) => {
     z: garden.position.z,
     rotateX: 0,
     rotateY: 0,
-    rotateZ: 0
+    rotateZ: 0,
+    repeatWidth: frontBottomPartWidth
   };
-  const frontTop: BoxProperties = {
-    depth: WallThickness,
-    height: garden.size.height - frontBottomPartHeight - garden.position.y,
-    width: garden.size.width,
-    x: garden.position.x,
-    y: frontBottomPartHeight,
-    z: garden.position.z,
-    rotateX: 0,
-    rotateY: 0,
-    rotateZ: 0
-  };
+  // const frontTop: BoxProperties = {
+  //   depth: WallThickness,
+  //   height: garden.size.height - frontBottomPartHeight - garden.position.y,
+  //   width: garden.size.width,
+  //   x: garden.position.x,
+  //   y: frontBottomPartHeight,
+  //   z: garden.position.z,
+  //   rotateX: 0,
+  //   rotateY: 0,
+  //   rotateZ: 0
+  // };
   const moduleLabel: LabelProperties = {
-    x: garden.position.x,
-    y: 5,
-    z: garden.position.z + 0.3,
+    x: garden.position.x - DoorSize.width,
+    y: 1.8,
+    z: garden.position.z + 1,
     label: garden.name,
     align: 'center',
     color: 'white',
-    width: garden.size.width
+    width: 2,
+    rotation: (Math.random() * 15) * ((Math.random() > 0.5) ? -1 : 1)
   };
   return render(ModuleLabelTemplate, moduleLabel) +
-    render(BoxTemplate, frontTop) +
+    // render(BoxTemplate, frontTop) +
     render(BoxTemplate, frontBottomLeft) +
     render(BoxTemplate, frontBottomRight);
 };
@@ -241,7 +255,8 @@ const getSideWalls = (garden: GardenLayout) => {
     depth: WallThickness,
     rotateX: 0,
     rotateY: 90,
-    rotateZ: 0
+    rotateZ: 0,
+    repeatWidth: garden.size.depth
   };
   const rightWall: BoxProperties = {
     x: garden.position.x + garden.size.width / 2 - WallThickness / 2,
@@ -252,7 +267,8 @@ const getSideWalls = (garden: GardenLayout) => {
     depth: WallThickness,
     rotateX: 0,
     rotateY: 90,
-    rotateZ: 0
+    rotateZ: 0,
+    repeatWidth: garden.size.depth
   };
   const backWall: BoxProperties = {
     x: garden.position.x,
@@ -263,7 +279,8 @@ const getSideWalls = (garden: GardenLayout) => {
     depth: WallThickness,
     rotateX: 0,
     rotateY: 0,
-    rotateZ: 0
+    rotateZ: 0,
+    repeatWidth: garden.size.depth
   };
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
