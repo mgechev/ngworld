@@ -100,10 +100,6 @@ const ModuleLabelTemplate = `
 </a-entity>
 `;
 
-// const ModuleLabelTemplate = `
-// <a-entity position="{{x}} {{y}} {{z}}" text="width: {{width}}; color: {{color}}; align: {{align}}; value: {{label}};"></a-entity>
-// `;
-
 const FrameTemplate = `
 <a-entity
   static-body=""
