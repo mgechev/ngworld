@@ -58,7 +58,7 @@ export interface WorldLayout {
 }
 
 const getWorldLayout = (gardens: GardenLayout[]) => {
-  console.log(cyan('💻  Calculating world layout'));
+  console.log(cyan('💻  Calculating world layout...'));
 
   let minX = Infinity;
   let minZ = Infinity;
@@ -240,7 +240,7 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
 };
 
 const getGardensLayout = (modules: Module[]): GardenLayout[] => {
-  console.log(cyan('💻  Calculating gardens layout'));
+  console.log(cyan('💻  Calculating gardens layout...'));
 
   const result: GardenLayout[] = [];
   modules = modules.sort((a, b) => b.components.length - a.components.length);
@@ -252,7 +252,7 @@ const getGardensLayout = (modules: Module[]): GardenLayout[] => {
 };
 
 export const createWorldLayout = (modules: Module[]): WorldLayout => {
-  console.log(cyan('💻  Calculating layout'));
+  console.log(cyan('💻  Calculating layout...'));
 
   const gardens = getGardensLayout(modules);
   const layout = getWorldLayout(gardens);
