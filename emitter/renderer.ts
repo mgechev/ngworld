@@ -1,7 +1,6 @@
 import { Module, Component } from '../parser/formatters';
 import { WorldLayout, GardenLayout, WallThickness, TreeLayout, LeaveSet, LeafType, Position, Size } from './layout';
 import { render } from 'mustache';
-import { writeFileSync } from 'fs';
 
 const Header =
 `<!DOCTYPE html>
@@ -17,8 +16,6 @@ const Header =
 <body>
   <a-scene physics="" canvas="" keyboard-shortcuts="" vr-mode-ui="">
 
-  <a-entity geometry="primitive: plane; height: 18; width: 9.24" position="125 4.96 2.15" rotation="-90 270 0" material="shader: flat; 
-  src: url(images/workflow.png)"></a-entity>
 `;
 
 const Footer = `
@@ -411,9 +408,9 @@ const renderFloor = (p: Position, s: Size) => {
   return render(FloorTemplate, template);
 };
 
-export const renderWorld = (layout: WorldLayout, fileName: string) => {
+export const renderWorld = (layout: WorldLayout) => {
   const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
-  writeFileSync(fileName, Header + gardens + frame + floor + Footer);
+  return Header + gardens + frame + floor + Footer;
 };
