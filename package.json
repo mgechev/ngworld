@@ -1,10 +1,14 @@
 {
-  "name": "ngrv",
+  "name": "ngworld",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "keywords": [],
-  "author": "",
+  "author": "Minko Gechev <mgechev@gmail.com>",
+  "scripts": {
+    "g": "ts-node index.ts",
+    "serve": "http-server ."
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/chalk": "^0.4.31",
@@ -13,16 +17,18 @@
     "@types/mustache": "^0.8.29"
   },
   "dependencies": {
-    "@angular/compiler": "^4.0.0-rc.2",
-    "@angular/compiler-cli": "4.0.0-rc.2",
-    "@angular/core": "^4.0.0-rc.2",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "4.0.0",
+    "@angular/core": "^4.0.0",
     "aframe": "^0.5.0",
     "aframe-extras": "^3.3.4",
     "chalk": "^1.1.3",
+    "http-server": "^0.9.0",
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
-    "ngast": "^0.0.15",
+    "ngast": "0.0.16",
     "rxjs": "^5.2.0",
+    "ts-node": "^3.0.2",
     "typescript": "^2.2.1",
     "zone.js": "^0.8.4"
   }

@@ -1,3 +1,5 @@
+import { cyan, green } from 'chalk';
+
 import { Module, Component, Node, NodeType } from '../parser/formatters';
 
 export const GardenHeight = 1.5;
@@ -56,6 +58,8 @@ export interface WorldLayout {
 }
 
 const getWorldLayout = (gardens: GardenLayout[]) => {
+  console.log(cyan('💻  Calculating world layout'));
+
   let minX = Infinity;
   let minZ = Infinity;
   let maxX = -Infinity;
@@ -91,6 +95,7 @@ const getWorldLayout = (gardens: GardenLayout[]) => {
   width = maxX - minX;
   depth = maxZ - minZ + WorldPadding;
   height = OuterWallHeight;
+
   return { size: { width, height, depth }, position: { x, y, z } };
 };
 
@@ -235,20 +240,29 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
 };
 
 const getGardensLayout = (modules: Module[]): GardenLayout[] => {
+  console.log(cyan('💻  Calculating gardens layout'));
+
   const result: GardenLayout[] = [];
   modules = modules.sort((a, b) => b.components.length - a.components.length);
   for (let i = 0; i < modules.length; i += 1) {
     result.push(getGardenLayout(modules[i], result[result.length - 1]));
   }
+
   return result;
 };
 
 export const createWorldLayout = (modules: Module[]): WorldLayout => {
+  console.log(cyan('💻  Calculating layout'));
+
   const gardens = getGardensLayout(modules);
   const layout = getWorldLayout(gardens);
+
+  console.log(green('✅  Layout calculated!'));
+
   return {
     size: layout.size,
     position: layout.position,
     gardens
   };
 };
+

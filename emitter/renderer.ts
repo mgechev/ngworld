@@ -1,6 +1,8 @@
+import { render } from 'mustache';
+import { cyan, green } from 'chalk';
+
 import { Module, Component } from '../parser/formatters';
 import { WorldLayout, GardenLayout, WallThickness, TreeLayout, LeaveSet, LeafType, Position, Size } from './layout';
-import { render } from 'mustache';
 
 const Header =
 `<!DOCTYPE html>
@@ -409,8 +411,14 @@ const renderFloor = (p: Position, s: Size) => {
 };
 
 export const renderWorld = (layout: WorldLayout) => {
+  console.log(cyan('🌍  Rendering world...'));
+
   const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
-  return Header + gardens + frame + floor + Footer;
+  const world = Header + gardens + frame + floor + Footer;
+
+  console.log(green('✅  World rendered!'));
+
+  return world;
 };

@@ -1,17 +1,6 @@
 import { ModuleSymbol, DirectiveSymbol, ContextSymbols } from 'ngast';
 import { TemplateAst, ElementAst } from '@angular/compiler';
-
-export const formatContext = (context: ContextSymbols) => {
-  return formatModules(context.getModules());
-};
-
-const formatModules = (modules: ModuleSymbol[]) => {
-  return modules.map(m => ({
-    name: m.symbol.name,
-    components: formatComponents(m.getDeclaredDirectives())
-  }))
-  .filter(m => m.components.length >= 1);
-};
+import { cyan, green } from 'chalk';
 
 export interface Module {
   name: string;
@@ -33,6 +22,23 @@ export interface Node {
   type: NodeType,
   children: Node[];
 }
+
+export const formatContext = (context: ContextSymbols) => {
+  console.log(cyan('⚙️  Transforming the ASTs...'));
+  const formatted = formatModules(context.getModules());
+  console.log(green('✅  ASTs transformed!'));
+  return formatted;
+};
+
+const formatModules = (modules: ModuleSymbol[]) => {
+  return modules.map(m => ({
+    name: m.symbol.name,
+    components: formatComponents(m.getDeclaredDirectives())
+  }))
+  .filter(m => m.components.length >= 1);
+};
+
+
 
 const transformTemplateAst = (template: TemplateAst) => {
   let result: Node = null;

@@ -1,14 +1,15 @@
 import * as ts from 'typescript';
-import {existsSync, readFileSync} from 'fs';
-import {dirname} from 'path';
+import { cyan, green } from 'chalk';
+import { existsSync, readFileSync } from 'fs';
+import { dirname } from 'path';
 
 export const normalizeOptions = (options: any, configFilePath: string) => {
   options.genDir = options.basePath = options.baseUrl;
   options.configFilePath = configFilePath;
-  console.log(configFilePath);
 };
 
 export const createProgramFromTsConfig = (configFile: string, overrideFiles: string[] = undefined): ts.Program => {
+  console.log(cyan('📝  Creating a program...'));
   const projectDirectory = dirname(configFile);
   const { config } = ts.readConfigFile(configFile, ts.sys.readFile);
 
@@ -24,6 +25,8 @@ export const createProgramFromTsConfig = (configFile: string, overrideFiles: str
   normalizeOptions(parsed.options, configFile);
   const host = ts.createCompilerHost(parsed.options, true);
   const program = ts.createProgram(overrideFiles || parsed.fileNames, parsed.options, host);
+
+  console.log(green('✅  Program created!'));
 
   return program;
 };
