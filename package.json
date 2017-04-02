@@ -1,12 +1,13 @@
 {
   "name": "ngworld",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "keywords": [],
   "author": "Minko Gechev <mgechev@gmail.com>",
   "scripts": {
     "g": "ts-node index.ts",
+    "release": "",
     "serve": "http-server ."
   },
   "license": "MIT",
