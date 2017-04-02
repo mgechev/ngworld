@@ -46,7 +46,7 @@ const Footer = `
 `;
 
 const TreeTemplate = `
-<a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
+<a-entity geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
@@ -91,7 +91,7 @@ const BoxTemplate = `
 `;
 
 const ModuleLabelTemplate = `
-<a-entity static-body="" geometry="primitive: plane; height: 1.2; width: {{width}}" position="{{x}} {{y}} {{z}}" rotation="0 {{rotation}} 0" material="shader: flat; side: double; background: #ddd;">
+<a-entity geometry="primitive: plane; height: 1.2; width: {{width}}" position="{{x}} {{y}} {{z}}" rotation="0 {{rotation}} 0" material="shader: flat; side: double; background: #ddd;">
   <a-entity position="0 0 0" text="width: 4; color: #222; align: {{align}}; value: {{label}};"></a-entity>
   <a-entity static-body="" geometry="primitive: plane; height: 1.5; width: 2" position="0 0 -0.02" rotation="0 0 0" material="shader: flat; side: double; src: url(images/wood.jpg); repeat: 2 2;"></a-entity>
   <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
