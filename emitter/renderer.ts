@@ -12,8 +12,8 @@ const Header =
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ngworld</title>
-  <script src="./node_modules/aframe/dist/aframe-master.js"></script>
-  <script src="./node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
+  <script src="./src/aframe-master.js"></script>
+  <script src="./src/aframe-extras.min.js"></script>
 </head>
 <body>
   <a-scene physics="" canvas="" keyboard-shortcuts="" vr-mode-ui="">
