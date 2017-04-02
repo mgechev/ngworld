@@ -422,3 +422,4 @@ export const renderWorld = (layout: WorldLayout) => {
 
   return world;
 };
+
