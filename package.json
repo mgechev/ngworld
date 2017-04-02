@@ -1,14 +1,12 @@
 {
   "name": "ngworld",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "VR from an Angular app",
   "main": "index.js",
   "keywords": ["vr", "angular", "compiler"],
   "author": "Minko Gechev <mgechev@gmail.com>",
   "scripts": {
-    "g": "ts-node index.ts",
-    "release": "rm -rf dist && tsc && cp README.md dist && mkdir dist/images && cp -r images dist && mkdir dist/src && cp node_modules/aframe/dist/aframe-master.js dist/src && cp node_modules/aframe/dist/aframe-master.js.map dist/src && cp node_modules/aframe-extras/dist/aframe-extras.min.js dist/src && cp favicon.ico dist && cp -r bin dist && cp package.json dist && ts-node tools/cleanup.ts",
-    "serve": "http-server ."
+    "release": "rm -rf dist && tsc && cp README.md dist && mkdir dist/images && cp -r images dist && mkdir dist/src && cp node_modules/aframe/dist/aframe-master.js dist/src && cp node_modules/aframe/dist/aframe-master.js.map dist/src && cp node_modules/aframe-extras/dist/aframe-extras.min.js dist/src && cp favicon.ico dist && cp -r bin dist && cp package.json dist && ts-node tools/cleanup.ts"
   },
   "bin": {
     "ngworld": "./bin/ngworld"
