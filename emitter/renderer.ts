@@ -11,6 +11,7 @@ const Header =
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="favicon.png">
   <title>ngworld</title>
   <script src="./src/aframe-master.js"></script>
   <script src="./src/aframe-extras.min.js"></script>
