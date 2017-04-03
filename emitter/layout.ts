@@ -117,11 +117,11 @@ const getLeaves = (template: Node[]) => {
 
 // We have less trees compared to previous layer
 const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: Position): TreeLayout[] => {
-  const perRow = Math.floor(prevSize.width / (2 * TreeMargin + TreeWidth));
-  const initialX = prevPosition.x + prevSize.width + 2 * WallThickness + TreeMargin;
-  const maxX = initialX + perRow * (TreeWidth + 2 * TreeMargin);
+  const perRow = Math.max(Math.ceil(Math.sqrt(components.length)), 1);
+  const initialX = prevPosition.x + prevSize.width + 2 * WallThickness + TreeMargin - (perRow - 1) * (2 / 3 * TreeMargin);
+  const maxX = initialX + perRow * (TreeWidth + TreeMargin);
   let currentX = initialX;
-  let currentZ = prevPosition.z - WallThickness - TreeMargin;
+  let currentZ = InitialZ + WallThickness + TreeMargin;
   const result: TreeLayout[] = [];
   for (let i = 0; i < components.length; i += 1) {
     const c = components[i];
@@ -146,7 +146,7 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
 const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
   const initialX = InitialX + TreeMargin + WallThickness;
   const initialZ = InitialZ + TreeMargin + WallThickness;
-  const perRow = Math.floor(Math.sqrt(components.length));
+  const perRow = Math.ceil(Math.sqrt(components.length));
   const maxX = initialX + perRow * (TreeWidth + TreeMargin);
   let currentX = initialX;
   let currentZ = initialZ;
@@ -174,18 +174,19 @@ const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
 const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) => {
   if (prevGarden) {
     const trees = getTreesLayout(module.components, prevGarden.size, prevGarden.position);
+    const perRow = Math.max(Math.ceil(Math.sqrt(module.components.length)), 1);
     let maxX = -Infinity;
     for (let i = 0; i < trees.length; i += 1) {
       const t = trees[i];
       if (maxX < t.position.x) {
         maxX = t.position.x;
-      } 
+      }
     }
     const result: GardenLayout = {
       name: module.name,
       size: {
         depth: prevGarden.size.depth,
-        width: (maxX - (prevGarden.position.x + prevGarden.size.width)) + WallThickness + TreeMargin,
+        width: (maxX - (prevGarden.position.x + prevGarden.size.width)) + WallThickness + TreeMargin + (perRow - 1) * TreeMargin / 2,
         height: GardenHeight
       },
       position: {
