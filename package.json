@@ -1,6 +1,6 @@
 {
   "name": "ngworld",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "VR from an Angular app",
   "main": "index.js",
   "keywords": ["vr", "angular", "compiler"],
@@ -30,7 +30,7 @@
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
     "ncp": "^2.0.0",
-    "ngast": "0.0.16",
+    "ngast": "0.0.17",
     "rxjs": "^5.2.0",
     "ts-node": "^3.0.2",
     "typescript": "^2.2.1",
