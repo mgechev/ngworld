@@ -1,4 +1,4 @@
-import { ModuleSymbol, DirectiveSymbol, ContextSymbols } from 'ngast';
+import { ModuleSymbol, DirectiveSymbol, ProjectSymbols } from 'ngast';
 import { TemplateAst, ElementAst } from '@angular/compiler';
 import { cyan, green } from 'chalk';
 
@@ -23,7 +23,7 @@ export interface Node {
   children: Node[];
 }
 
-export const formatContext = (context: ContextSymbols) => {
+export const formatContext = (context: ProjectSymbols) => {
   console.log(cyan('⚙️  Transforming the ASTs...'));
   const formatted = formatModules(context.getModules());
   console.log(green('✅  ASTs transformed!'));
