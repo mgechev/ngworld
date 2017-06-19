@@ -50,7 +50,11 @@ const Footer = `
     filter(e => /leaf-\\d-\\d-\\d/.test(e.id));
   entities.forEach(e => e.addEventListener('click', _ => {
     const treeId = e.getAttribute('data-tree-id');
-    document.getElementById(treeId).emit('shake-' + treeId);
+    document.getElementById(treeId).emit('shake-front-' + treeId);
+    setTimeout(() => {
+      document.getElementById(treeId).emit('shake-back-' + treeId);
+      setTimeout(() => document.getElementById(treeId).emit('shake-ready-' + treeId), 150);
+    }, 150);
     e.emit('shake-' + e.id);
   }));
 }());
@@ -66,10 +70,21 @@ const TreeTemplate = `
   <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
   </a-entity>
   <a-animation attribute="rotation"¬
-               dur="100"¬
-               fill="forwards"¬
-               to="2 30 0"¬
-               begin="shake-{{id}}"
+               dur="150"¬
+               to="3 30 0"¬
+               begin="shake-front-{{id}}"
+               repeat="0">¬
+  </a-animation>¬
+  <a-animation attribute="rotation"¬
+               dur="150"¬
+               to="-3 30 0"¬
+               begin="shake-back-{{id}}"
+               repeat="0">¬
+  </a-animation>¬
+  <a-animation attribute="rotation"¬
+               dur="150"¬
+               to="0 30 0"¬
+               begin="shake-ready-{{id}}"
                repeat="0">¬
   </a-animation>¬
 </a-entity>
