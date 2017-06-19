@@ -13,7 +13,9 @@ app.post('/', (request, response) => {
   console.log(p.file);
   if (p.file) {
     const content = readFileSync(p.file).toString();
-    const result = content.substring(0, p.start) + content.substring(p.end, content.length);
+    const result = content.substring(0, p.start) +
+      content.substring(p.start, p.end).replace(/\S/g, ' ') +
+      content.substring(p.end, content.length);
     console.log(result);
 //    writeFileSync(p.file, result);
   }
