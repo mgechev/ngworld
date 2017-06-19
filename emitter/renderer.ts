@@ -2,7 +2,7 @@ import { render } from 'mustache';
 import { cyan, green } from 'chalk';
 
 import { Module, Component } from '../parser/formatters';
-import { WorldLayout, GardenLayout, WallThickness, TreeLayout, LeaveSet, LeafType, Position, Size } from './layout';
+import { WorldLayout, GardenLayout, WallThickness, TreeLayout, TreeWidth, LeaveSet, LeafType, Position, Size } from './layout';
 
 const Header =
 `<!DOCTYPE html>
@@ -49,6 +49,11 @@ const Footer = `
   const entities = [].slice.call(document.getElementsByTagName('a-entity')).
     filter(e => /leaf-\\d-\\d-\\d/.test(e.id));
   entities.forEach(e => e.addEventListener('click', _ => {
+    if (e.getAttribute('data-shaked')) {
+      return;
+    } else {
+      e.setAttribute('data-shaked', true);
+    }
     const treeId = e.getAttribute('data-tree-id');
     document.getElementById(treeId).emit('shake-front-' + treeId);
     setTimeout(() => {
@@ -69,6 +74,7 @@ const TreeTemplate = `
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
   </a-entity>
+  {{{leaves}}}
   <a-animation attribute="rotation"¬
                dur="150"¬
                to="3 30 0"¬
@@ -199,6 +205,7 @@ interface TreeProperties {
   height: number;
   label: string;
   id: string;
+  leaves: string;
 }
 
 interface LabelProperties {
@@ -328,16 +335,15 @@ const getSideWalls = (garden: GardenLayout) => {
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
 
-const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: number}, partialId: string, treeId: string) => {
+const getLeaves = (leaveSets: LeaveSet[], partialId: string, treeId: string) => {
   const totalLevels = leaveSets.length;
-
   const renderLevel = (leaves: LeaveSet, level: number) => {
     const fromBottom = (leaveSets.length - 1 - level) * LeafHeight + TreeHeight / 2 - LeafHeight;
     const perRow = Math.ceil(Math.sqrt(leaves.length));
     const result: string[] = [];
     let rowXWidth = perRow * LeafWidth;
-    const initialX = position.x - rowXWidth / 2 + LeafWidth - 0.5 * LeafWidth;
-    const initialZ = position.z - rowXWidth / 2 + LeafWidth;
+    const initialX = -(rowXWidth - LeafWidth) / 2;
+    const initialZ = 0;
     let currentX = initialX;
     let currentZ = initialZ;
     for (let i = 0; i < leaves.length; i += 1) {
@@ -380,14 +386,12 @@ const getTrees = (trees: TreeLayout[], gardenId: number) => {
     y: 0,
     height: TreeHeight,
     label: t.name,
-    id: 'tree-' + gardenId + '-' + idx
+    id: 'tree-' + gardenId + '-' + idx,
+    leaves: ''
   }, t, idx]).map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
-    const leaves = getLeaves(layout.leaves, {
-      x: layout.position.x,
-      z: layout.position.z,
-      y: 0
-    }, 'leaf-' + gardenId + '-' + treeIdx, props.id);
-    return render(TreeTemplate, props) + leaves;
+    const leaves = getLeaves(layout.leaves, 'leaf-' + gardenId + '-' + treeIdx, props.id);
+    props.leaves = leaves;
+    return render(TreeTemplate, props);
   }).join('\n');
 };
 
