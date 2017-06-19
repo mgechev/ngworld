@@ -34,6 +34,8 @@ export enum LeafType {
 export interface Leaf {
   label: string;
   type: LeafType;
+  startOffset: number;
+  endOffset: number;
 }
 
 export type LeaveSet = Leaf[];
@@ -42,6 +44,7 @@ export interface TreeLayout {
   name: string;
   position: Position;
   leaves: LeaveSet[];
+  templateUrl: string;
 }
 
 export interface GardenLayout {
@@ -107,7 +110,9 @@ const getLeaves = (template: Node[]) => {
     }
     result[level].push({
       label: node.name,
-      type: node.type === NodeType.Custom ? LeafType.Special : LeafType.Plain
+      type: node.type === NodeType.Custom ? LeafType.Special : LeafType.Plain,
+      startOffset: node.startOffset,
+      endOffset: node.endOffset
     });
     node.children.forEach(buildResult.bind(null, level + 1));
   };
@@ -127,6 +132,7 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
     const c = components[i];
     result.push({
       name: c.name,
+      templateUrl: c.templateUrl,
       position: {
         x: currentX,
         y: GroundY,
@@ -155,6 +161,7 @@ const getInitialTreesLayout = (components: Component[]): TreeLayout[] => {
     const c = components[i];
     result.push({
       name: c.name,
+      templateUrl: c.templateUrl,
       position: {
         x: currentX,
         y: GroundY,

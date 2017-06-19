@@ -10,6 +10,7 @@ export interface Module {
 export interface Component {
   name: string;
   template: Node[];
+  templateUrl: string;
 }
 
 export enum NodeType {
@@ -21,6 +22,8 @@ export interface Node {
   name: string;
   type: NodeType,
   children: Node[];
+  startOffset: number;
+  endOffset: number;
 }
 
 export const formatContext = (context: ProjectSymbols) => {
@@ -44,9 +47,11 @@ const transformTemplateAst = (template: TemplateAst) => {
   let result: Node = null;
   if (template instanceof ElementAst) {
     const addNode = (parentNode: Node, child: TemplateAst) => {
-      if (child instanceof ElementAst) {
+      if (child instanceof ElementAst && child.endSourceSpan && child.sourceSpan) {
         const node = {
           name: child.name,
+          startOffset: child.sourceSpan.start.offset,
+          endOffset: child.endSourceSpan.end.offset,
           children: [],
           type: child.directives.length ? NodeType.Custom : NodeType.Plain
         };
@@ -54,7 +59,7 @@ const transformTemplateAst = (template: TemplateAst) => {
         child.children.map(addNode.bind(null, node));
       }
     };
-    result = { name: template.name, type: template.directives.length ? NodeType.Custom : NodeType.Plain, children: [] };
+    result = { name: template.name, startOffset: template.sourceSpan.start.offset, endOffset: template.endSourceSpan.end.offset, type: template.directives.length ? NodeType.Custom : NodeType.Plain, children: [] };
     template.children.forEach(addNode.bind(null, result));
   }
   return result;
@@ -63,6 +68,9 @@ const transformTemplateAst = (template: TemplateAst) => {
 const formatComponents = (directives: DirectiveSymbol[]) => {
   return directives.map(d => ({
     name: d.symbol.name,
-    template: (d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n)
+    template: (d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n),
+    // Depends on the line above for
+    // resolution of the absolute path.
+    templateUrl: (d.getNonResolvedMetadata().template || {} as any).templateUrl
   })).filter(d => d.template.length >= 1);
 };

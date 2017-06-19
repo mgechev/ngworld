@@ -55,12 +55,24 @@ const Footer = `
       e.setAttribute('data-shaked', true);
     }
     const treeId = e.getAttribute('data-tree-id');
-    document.getElementById(treeId).emit('shake-front-' + treeId);
+    const tree = document.getElementById(treeId);
+    tree.emit('shake-front-' + treeId);
     setTimeout(() => {
       document.getElementById(treeId).emit('shake-back-' + treeId);
       setTimeout(() => document.getElementById(treeId).emit('shake-ready-' + treeId), 150);
     }, 150);
     e.emit('shake-' + e.id);
+    fetch('http://localhost:8081', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        file: tree.getAttribute('data-template-url'),
+        start: e.getAttribute('data-start-offset'),
+        end: e.getAttribute('data-end-offset')
+      })
+    });
   }));
 }());
 </script>
@@ -69,7 +81,7 @@ const Footer = `
 `;
 
 const TreeTemplate = `
-<a-entity id="{{id}}" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
+<a-entity id="{{id}}" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="{{{templateUrl}}}">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
@@ -99,6 +111,8 @@ const TreeTemplate = `
 const LeafTemplate = `
 <a-entity
   id="{{id}}"
+  data-start-offset="{{startOffset}}"
+  data-end-offset="{{endOffset}}"
   data-tree-id="{{treeId}}"
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
@@ -196,6 +210,8 @@ interface LeafProperties {
   halfLeaf: number;
   id: string;
   treeId: string;
+  endOffset: number;
+  startOffset: number;
 }
 
 interface TreeProperties {
@@ -206,6 +222,7 @@ interface TreeProperties {
   label: string;
   id: string;
   leaves: string;
+  templateUrl: string;
 }
 
 interface LabelProperties {
@@ -350,6 +367,8 @@ const getLeaves = (leaveSets: LeaveSet[], partialId: string, treeId: string) => 
       let leaf = leaves[i];
       let leafId = partialId + '-' + i;
       let leafProps: LeafProperties = {
+        startOffset: leaf.startOffset,
+        endOffset: leaf.endOffset,
         label: leaf.label,
         color: leaf.type === LeafType.Plain ? '#8CB300' : '#C1F01A',
         x: currentX,
@@ -387,7 +406,8 @@ const getTrees = (trees: TreeLayout[], gardenId: number) => {
     height: TreeHeight,
     label: t.name,
     id: 'tree-' + gardenId + '-' + idx,
-    leaves: ''
+    leaves: '',
+    templateUrl: t.templateUrl
   }, t, idx]).map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
     const leaves = getLeaves(layout.leaves, 'leaf-' + gardenId + '-' + treeIdx, props.id);
     props.leaves = leaves;
