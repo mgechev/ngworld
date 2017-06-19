@@ -44,3 +44,4 @@ cp(join(__dirname, 'src'), 'src', () => {
     });
   });
 });
+

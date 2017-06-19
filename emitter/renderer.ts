@@ -15,6 +15,7 @@ const Header =
   <title>ngworld</title>
   <script src="./src/aframe-master.js"></script>
   <script src="./src/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-controller-cursor-component@0.2.x/dist/aframe-controller-cursor-component.min.js"></script>
 </head>
 <body>
   <a-scene physics="" canvas="" keyboard-shortcuts="" vr-mode-ui="">
@@ -25,9 +26,10 @@ const Footer = `
 <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
   <!-- Camera -->
   <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 45" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
-  <a-entity id="cursor" cursor="fuse: true; maxDistance: 5; timeout: 1" geometry="primitive: sphere; radius: 1;" material="color: red; opacity: 1;" position="0 -10 0" raycaster=""></a-entity>
   <a-animation attribute="position" begin="roof" dur="0" to="134 8 2.1"></a-animation>
   <a-animation attribute="position" begin="start" dur="0" to="125 1.8 2.1"></a-animation>
+  <a-entity id="blockHand" hand-controls="right" controller-cursor intersection-spawn="event: click; mixin: voxel" position="0 0 5"></a-entity>
+  <a-cursor intersection-spawn="event: click; mixin: voxel"></a-cursor>
   </a-entity>
   <!-- Lighting and background -->
   <a-sky src="images/sky.jpg" radius="5000" material="color:#FFF;shader:flat;src:url(images/sky.jpg)" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="-1 1 1"></a-sky>
@@ -42,21 +44,41 @@ const Footer = `
       </div>
     </div>
     <div class="a-orientation-modal a-hidden"><button>Exit VR</button></div></a-scene>
+<script>
+(function () {
+  const entities = [].slice.call(document.getElementsByTagName('a-entity')).
+    filter(e => /leaf-\\d-\\d-\\d/.test(e.id));
+  entities.forEach(e => e.addEventListener('click', _ => {
+    const treeId = e.getAttribute('data-tree-id');
+    document.getElementById(treeId).emit('shake-' + treeId);
+    e.emit('shake-' + e.id);
+  }));
+}());
+</script>
 </body>
 </html>
 `;
 
 const TreeTemplate = `
-<a-entity geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
+<a-entity id="{{id}}" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
   </a-entity>
+  <a-animation attribute="rotation"¬
+               dur="100"¬
+               fill="forwards"¬
+               to="2 30 0"¬
+               begin="shake-{{id}}"
+               repeat="0">¬
+  </a-animation>¬
 </a-entity>
 `;
 
 const LeafTemplate = `
 <a-entity
+  id="{{id}}"
+  data-tree-id="{{treeId}}"
   geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
   position="{{x}} {{y}} {{z}}"
   material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
@@ -76,6 +98,13 @@ const LeafTemplate = `
     rotation="0 180 0"
     text="side: double; width: 2; color: white; align: center; value: {{label}};">
   </a-entity>
+  <a-animation attribute="position"¬
+               dur="1000"¬
+               begin="shake-{{id}}"
+               fill="forwards"¬
+               to="{{x}} 0 {{z}}"¬
+               repeat="0">¬
+  </a-animation>¬
 </a-entity>
 `;
 
@@ -144,6 +173,8 @@ interface LeafProperties {
   height: number;
   depth: number;
   halfLeaf: number;
+  id: string;
+  treeId: string;
 }
 
 interface TreeProperties {
@@ -152,6 +183,7 @@ interface TreeProperties {
   z: number;
   height: number;
   label: string;
+  id: string;
 }
 
 interface LabelProperties {
@@ -281,12 +313,11 @@ const getSideWalls = (garden: GardenLayout) => {
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
 
-const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: number}) => {
+const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: number}, partialId: string, treeId: string) => {
   const totalLevels = leaveSets.length;
 
   const renderLevel = (leaves: LeaveSet, level: number) => {
     const fromBottom = (leaveSets.length - 1 - level) * LeafHeight + TreeHeight / 2 - LeafHeight;
-    // console.log(fromBottom, level);
     const perRow = Math.ceil(Math.sqrt(leaves.length));
     const result: string[] = [];
     let rowXWidth = perRow * LeafWidth;
@@ -296,6 +327,7 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
     let currentZ = initialZ;
     for (let i = 0; i < leaves.length; i += 1) {
       let leaf = leaves[i];
+      let leafId = partialId + '-' + i;
       let leafProps: LeafProperties = {
         label: leaf.label,
         color: leaf.type === LeafType.Plain ? '#8CB300' : '#C1F01A',
@@ -305,7 +337,9 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
         width: LeafWidth,
         height: LeafHeight,
         depth: LeafDepth,
-        halfLeaf: LeafWidth / 2
+        halfLeaf: LeafWidth / 2,
+        treeId: treeId,
+        id: leafId
       };
       result.push(render(LeafTemplate, leafProps));
       currentX += LeafWidth;
@@ -324,25 +358,26 @@ const getLeaves = (leaveSets: LeaveSet[], position: {x: number, y: number, z: nu
   return result;
 };
 
-const getTrees = (trees: TreeLayout[]) => {
-  return trees.map(t => [{
+const getTrees = (trees: TreeLayout[], gardenId: number) => {
+  return trees.map((t, idx) => [{
     x: t.position.x,
     z: t.position.z,
     y: 0,
     height: TreeHeight,
-    label: t.name
-  }, t]).map(([props, layout]: [TreeProperties, TreeLayout]) => {
+    label: t.name,
+    id: 'tree-' + gardenId + '-' + idx
+  }, t, idx]).map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
     const leaves = getLeaves(layout.leaves, {
       x: layout.position.x,
       z: layout.position.z,
       y: 0
-    });
+    }, 'leaf-' + gardenId + '-' + treeIdx, props.id);
     return render(TreeTemplate, props) + leaves;
   }).join('\n');
 };
 
-const renderGarden = (garden: GardenLayout) => {
-  return getTrees(garden.trees) + getFrontWalls(garden) + getSideWalls(garden);
+const renderGarden = (garden: GardenLayout, idx: number) => {
+  return getTrees(garden.trees, idx) + getFrontWalls(garden) + getSideWalls(garden);
 };
 
 const renderFrame = (p: Position, size: Size) => {
@@ -414,7 +449,7 @@ const renderFloor = (p: Position, s: Size) => {
 export const renderWorld = (layout: WorldLayout) => {
   console.log(cyan('🌍  Rendering world...'));
 
-  const gardens = layout.gardens.map(g => renderGarden(g)).join('\n');
+  const gardens = layout.gardens.map((g, idx) => renderGarden(g, idx)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
   const world = Header + gardens + frame + floor + Footer;
