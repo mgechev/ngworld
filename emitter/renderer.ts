@@ -15,7 +15,7 @@ const Header =
   <title>ngworld</title>
   <script src="./src/aframe-master.js"></script>
   <script src="./src/aframe-extras.min.js"></script>
-  <script src="https://unpkg.com/aframe-controller-cursor-component@0.2.x/dist/aframe-controller-cursor-component.min.js"></script>
+  <script src="./src/aframe-controller-cursor-component.min.js"></script>
 </head>
 <body>
   <a-scene physics="" canvas="" keyboard-shortcuts="" vr-mode-ui="">

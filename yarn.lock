@@ -50,6 +50,10 @@ acorn@^4.0.3:
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
 
+aframe-controller-cursor-component@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/aframe-controller-cursor-component/-/aframe-controller-cursor-component-0.2.7.tgz#80ed5aec6b8a58961a766cae0d9eb79a5f406534"
+
 aframe-extras@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/aframe-extras/-/aframe-extras-3.3.4.tgz#e4b70de2dacbfd19b67d9a4725427ad5c9c6461d"
