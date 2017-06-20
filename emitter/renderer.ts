@@ -89,7 +89,7 @@ const TreeTemplate = `
   {{{leaves}}}
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-{{id}}"
                repeat="0">¬
   </a-animation>¬
