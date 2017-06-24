@@ -17,7 +17,7 @@ app.post('/', (request, response) => {
       content.substring(p.start, p.end).replace(/\S/g, ' ') +
       content.substring(p.end, content.length);
     console.log(result);
-//    writeFileSync(p.file, result);
+    writeFileSync(p.file, result);
   }
   response.end();
 });
