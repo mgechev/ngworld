@@ -9,7 +9,7 @@ export const normalizeOptions = (options: any, configFilePath: string) => {
 };
 
 export const createProgramFromTsConfig = (configFile: string, overrideFiles: string[] = undefined): ts.Program => {
-  console.log(cyan('📝\t', 'Creating a program...'));
+  console.log(cyan('Creating a program...'));
   const projectDirectory = dirname(configFile);
   const { config } = ts.readConfigFile(configFile, ts.sys.readFile);
 
@@ -26,7 +26,7 @@ export const createProgramFromTsConfig = (configFile: string, overrideFiles: str
   const host = ts.createCompilerHost(parsed.options, true);
   const program = ts.createProgram(overrideFiles || parsed.fileNames, parsed.options, host);
 
-  console.log(green('✅\t', 'Program created!'));
+  console.log(green('Program created!'));
 
   return program;
 };
