@@ -39,7 +39,7 @@ const world = emit(parse(projectPath));
 cp(join(__dirname, 'src'), 'src', () => {
   cp(join(__dirname, 'images'), 'images', () => {
     cp(join(__dirname, 'favicon.png'), 'favicon.png', () => {
-      console.log('🌍 Enjoy your ngworld! 🌍');
+      console.log('🌍\t', 'Enjoy your ngworld', '\t🌍');
       writeFileSync('index.html', world);
     });
   });

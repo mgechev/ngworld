@@ -506,14 +506,14 @@ const renderFloor = (p: Position, s: Size) => {
 };
 
 export const renderWorld = (layout: WorldLayout) => {
-  console.log(cyan('🌍 Rendering world...'));
+  console.log(cyan('🌍\t', 'Rendering world...'));
 
   const gardens = layout.gardens.map((g, idx) => renderGarden(g, idx)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
   const world = Header + gardens + frame + floor + Footer;
 
-  console.log(green('✅  World rendered!'));
+  console.log(green('✅\t', 'World rendered!'));
 
   return world;
 };
