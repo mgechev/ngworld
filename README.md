@@ -36,7 +36,7 @@ http-server .
 
 ### Code
 
-You can find the code for ng-xmas in the [ng-xmas](https://github.com/mgechev/ngworld/blob/ng-xmas) branch.
+You can find the code for ng-xmas in the [ng-xmas](https://github.com/mgechev/ngworld/tree/ng-xmas) branch.
 
 ## Demo
 
