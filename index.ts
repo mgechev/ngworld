@@ -37,7 +37,7 @@ const world = emit(parse(projectPath));
 cp(join(__dirname, 'src'), 'src', () => {
   cp(join(__dirname, 'images'), 'images', () => {
     cp(join(__dirname, 'favicon.png'), 'favicon.png', () => {
-      console.log('🎄\t', 'Enjoy your Christmas', '\t🎄');
+      console.log('🎄', 'Enjoy your Christmas');
       writeFileSync('index.html', world);
     });
   });

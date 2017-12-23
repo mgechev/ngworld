@@ -27,9 +27,9 @@ export interface Node {
 }
 
 export const formatContext = (context: ProjectSymbols) => {
-  console.log(cyan('⚙️\t', 'Transforming the ASTs...'));
+  console.log(cyan('Transforming the ASTs...'));
   const formatted = formatModules(context.getModules());
-  console.log(green('✅\t', 'ASTs transformed!'));
+  console.log(green('ASTs transformed!'));
   return formatted;
 };
 
