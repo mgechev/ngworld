@@ -9,7 +9,7 @@ import { ncp } from 'ncp';
 
 const error = message => console.error(bgRed.white(message));
 
-const projectPath = '/Users/mgechev/Projects/angular-crm/src/client/tsconfig.json'; //(minimist(process.argv.slice(2)) as any).p;
+const projectPath = (minimist(process.argv.slice(2)) as any).p;
 
 if (typeof projectPath !== 'string') {
   error('Specify the path to the root "tsconfig" file of your project with the "-p" flag');
@@ -34,11 +34,11 @@ const cp = (src: string, dest: string, cb: Function) => {
 
 const world = emit(parse(projectPath));
 
-cp(join(__dirname, 'src'), '/Users/mgechev/Desktop/src', () => {
-  cp(join(__dirname, 'images'), '/Users/mgechev/Desktop/images', () => {
-    cp(join(__dirname, 'favicon.png'), '/Users/mgechev/Desktop/favicon.png', () => {
+cp(join(__dirname, 'src'), 'src', () => {
+  cp(join(__dirname, 'images'), 'images', () => {
+    cp(join(__dirname, 'favicon.png'), 'favicon.png', () => {
       console.log('🎄 Enjoy your ng-xmas! 🎄');
-      writeFileSync('/Users/mgechev/Desktop/index.html', world);
+      writeFileSync('index.html', world);
     });
   });
 });
