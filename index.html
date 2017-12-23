@@ -5,342 +5,243 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="favicon.png">
-  <title>ngworld</title>
+  <title>ng-xmas</title>
   <script src="./src/aframe-master.js"></script>
   <script src="./src/aframe-extras.min.js"></script>
   <script src="./src/aframe-controller-cursor-component.min.js"></script>
+  <script src="./src/aframe-particle-system-component.min.js"></script>
 </head>
 <body>
+  <a href="https://github.com/mgechev/ngworld" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="z-index: 100000; fill:goldenrod; color:#fff; position: fixed; top: 20px; border: 0; left: 20px; transform: scale(-1.5, 1.5);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
   <a-scene physics="" canvas="" keyboard-shortcuts="" vr-mode-ui="">
 
 
-<a-entity id="tree-0-0" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="4.1 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: AboutComponent;">
+<a-entity id="tree-0-0" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="4.1 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/about/about.component.html">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: AboutComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-0-0-0"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.6999999999999998 2.8 0"
+<a-cone position="0 2.9899999999999998 0" id="leaf-0-0-0"
+  data-start-offset="422" data-end-offset="464"
+  data-tree-id="tree-0-0" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-0"
-               fill="forwards"¬
-               to="-0.6999999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-0-1"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.1102230246251565e-16 2.8 0"
+<a-cone position="0 3.99 0" id="leaf-0-0-0"
+  data-start-offset="316" data-end-offset="419"
+  data-tree-id="tree-0-0" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-1"
-               fill="forwards"¬
-               to="1.1102230246251565e-16 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-0-2"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.7000000000000001 2.8 0"
+<a-cone position="0 4.825 0" id="leaf-0-0-0"
+  data-start-offset="270" data-end-offset="313"
+  data-tree-id="tree-0-0" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-2"
-               fill="forwards"¬
-               to="0.7000000000000001 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-0-3"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.4 2.8 0"
+<a-cone position="0 5.66 0" id="leaf-0-0-0"
+  data-start-offset="160" data-end-offset="267"
+  data-tree-id="tree-0-0" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-3"
-               fill="forwards"¬
-               to="1.4 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-0-4"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.6999999999999998 2.8 0.7"
+<a-cone position="0 6.495 0" id="leaf-0-0-0"
+  data-start-offset="153" data-end-offset="672"
+  data-tree-id="tree-0-0" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-4"
-               fill="forwards"¬
-               to="-0.6999999999999998 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-0-5"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.1102230246251565e-16 2.8 0.7"
+<a-cone position="0 7.33 0" id="leaf-0-0-0"
+  data-start-offset="119" data-end-offset="152"
+  data-tree-id="tree-0-0" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-5"
-               fill="forwards"¬
-               to="1.1102230246251565e-16 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-0-6"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.7000000000000001 2.8 0.7"
+<a-cone position="0 8.165000000000001 0" id="leaf-0-0-0"
+  data-start-offset="0" data-end-offset="117"
+  data-tree-id="tree-0-0" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-6"
-               fill="forwards"¬
-               to="0.7000000000000001 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-<a-entity
-  id="leaf-0-0-0"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-0-0-1"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-0-0-2"
-  data-tree-id="tree-0-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 3.5 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-0-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-0-0"
                repeat="0">¬
   </a-animation>¬
@@ -359,141 +260,139 @@
 </a-entity>
 
 
-<a-entity id="tree-0-1" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="11.1 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: ChartComponent;">
+<a-entity id="tree-0-1" geometry="primitive: box; depth: 0.1; height: 9; width: 0.2" position="11.1 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 9; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 9; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: ChartComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-0-1-0"
-  data-tree-id="tree-0-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 1.7 0" id="leaf-0-1-0"
+  data-start-offset="94" data-end-offset="110"
+  data-tree-id="tree-0-1" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-1-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-1-1"
-  data-tree-id="tree-0-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 2.7 0" id="leaf-0-1-0"
+  data-start-offset="55" data-end-offset="87"
+  data-tree-id="tree-0-1" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-1-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-1-2"
-  data-tree-id="tree-0-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 3.7 0" id="leaf-0-1-0"
+  data-start-offset="32" data-end-offset="48"
+  data-tree-id="tree-0-1" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-1-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-0-1-0"
-  data-tree-id="tree-0-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0 3.5 0"
+<a-cone position="0 4.7 0" id="leaf-0-1-0"
+  data-start-offset="5" data-end-offset="120"
+  data-tree-id="tree-0-1" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-1-0"
-               fill="forwards"¬
-               to="0 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-0-1"
                repeat="0">¬
   </a-animation>¬
@@ -512,173 +411,170 @@
 </a-entity>
 
 
-<a-entity id="tree-0-2" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="4.1 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: GridComponent;">
+<a-entity id="tree-0-2" geometry="primitive: box; depth: 0.1; height: 11; width: 0.2" position="4.1 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 11; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 11; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: GridComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-0-2-0"
-  data-tree-id="tree-0-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 2.825 0" id="leaf-0-2-0"
+  data-start-offset="109" data-end-offset="123"
+  data-tree-id="tree-0-2" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-2-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-2-1"
-  data-tree-id="tree-0-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 3.66 0" id="leaf-0-2-0"
+  data-start-offset="72" data-end-offset="102"
+  data-tree-id="tree-0-2" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-2-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-2-2"
-  data-tree-id="tree-0-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 4.495 0" id="leaf-0-2-0"
+  data-start-offset="51" data-end-offset="65"
+  data-tree-id="tree-0-2" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-2-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-0-2-0"
-  data-tree-id="tree-0-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
+<a-cone position="0 5.33 0" id="leaf-0-2-0"
+  data-start-offset="24" data-end-offset="133"
+  data-tree-id="tree-0-2" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-2-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-2-1"
-  data-tree-id="tree-0-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
+<a-cone position="0 6.165 0" id="leaf-0-2-0"
+  data-start-offset="5" data-end-offset="19"
+  data-tree-id="tree-0-2" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-2-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-0-2"
                repeat="0">¬
   </a-animation>¬
@@ -697,109 +593,108 @@
 </a-entity>
 
 
-<a-entity id="tree-0-3" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="11.1 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
+<a-entity id="tree-0-3" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="11.1 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: RatingComponent;">
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: RatingComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-0-3-0"
-  data-tree-id="tree-0-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 1.7 0" id="leaf-0-3-0"
+  data-start-offset="51" data-end-offset="62"
+  data-tree-id="tree-0-3" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-3-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-0-3-1"
-  data-tree-id="tree-0-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 2.7 0" id="leaf-0-3-0"
+  data-start-offset="17" data-end-offset="44"
+  data-tree-id="tree-0-3" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-3-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-0-3-0"
-  data-tree-id="tree-0-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0 3.5 0"
+<a-cone position="0 3.7 0" id="leaf-0-3-0"
+  data-start-offset="5" data-end-offset="73"
+  data-tree-id="tree-0-3" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-0-3-0"
-               fill="forwards"¬
-               to="0 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-0-3"
                repeat="0">¬
   </a-animation>¬
@@ -817,7 +712,7 @@
   </a-animation>¬
 </a-entity>
 
-<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="4.6 1.8 16.2" rotation="0 -6.993468994366801 0" material="shader: flat; side: double; background: #ddd;">
+<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="4.6 1.8 16.2" rotation="0 -11.593067570315018 0" material="shader: flat; side: double; background: #ddd;">
   <a-entity position="0 0 0" text="width: 4; color: #222; align: center; value: AboutModule;"></a-entity>
   <a-entity static-body="" geometry="primitive: plane; height: 1.5; width: 2" position="0 0 -0.02" rotation="0 0 0" material="shader: flat; side: double; src: url(images/wood.jpg); repeat: 2 2;"></a-entity>
   <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
@@ -875,268 +770,232 @@
 </a-entity>
 
 
-<a-entity id="tree-1-0" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="24.33333333333333 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: ToolbarComponent;">
+<a-entity id="tree-1-0" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="24.33333333333333 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/shared/toolbar/toolbar.component.html">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: ToolbarComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-1-0-0"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 2.9899999999999998 0" id="leaf-1-0-0"
+  data-start-offset="189" data-end-offset="202"
+  data-tree-id="tree-1-0" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-0-1"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 3.99 0" id="leaf-1-0-0"
+  data-start-offset="147" data-end-offset="184"
+  data-tree-id="tree-1-0" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-0-2"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 4.825 0" id="leaf-1-0-0"
+  data-start-offset="79" data-end-offset="108"
+  data-tree-id="tree-1-0" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: span;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-0-3"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0.7"
+<a-cone position="0 5.66 0" id="leaf-1-0-0"
+  data-start-offset="124" data-end-offset="229"
+  data-tree-id="tree-1-0" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: span;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-3"
-               fill="forwards"¬
-               to="-0.35 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: div;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-1-0-0"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
+<a-cone position="0 6.495 0" id="leaf-1-0-0"
+  data-start-offset="52" data-end-offset="121"
+  data-tree-id="tree-1-0" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-0-1"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
+<a-cone position="0 7.33 0" id="leaf-1-0-0"
+  data-start-offset="12" data-end-offset="49"
+  data-tree-id="tree-1-0" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-0-2"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 3.5 0"
+<a-cone position="0 8.165000000000001 0" id="leaf-1-0-0"
+  data-start-offset="0" data-end-offset="240"
+  data-tree-id="tree-1-0" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: div;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-<a-entity
-  id="leaf-1-0-0"
-  data-tree-id="tree-1-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0 4.2 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-0-0"
-               fill="forwards"¬
-               to="0 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-1-0"
                repeat="0">¬
   </a-animation>¬
@@ -1155,205 +1014,201 @@
 </a-entity>
 
 
-<a-entity id="tree-1-1" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="31.33333333333333 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: NavbarComponent;">
+<a-entity id="tree-1-1" geometry="primitive: box; depth: 0.1; height: 13; width: 0.2" position="31.33333333333333 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/shared/navbar/navbar.component.html">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 13; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 13; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: NavbarComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-1-1-0"
-  data-tree-id="tree-1-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
-  material="shader: standard; metalness: 0.6; color: #C1F01A; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-1-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-1-1-1"
-  data-tree-id="tree-1-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
-  material="shader: standard; metalness: 0.6; color: #C1F01A; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-1-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-1-1-2"
-  data-tree-id="tree-1-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 2.9899999999999998 0" id="leaf-1-1-0"
+  data-start-offset="279" data-end-offset="402"
+  data-tree-id="tree-1-1" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-1-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-1-3"
-  data-tree-id="tree-1-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0.7"
-  material="shader: standard; metalness: 0.6; color: #C1F01A; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: a;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-1-3"
-               fill="forwards"¬
-               to="-0.35 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-<a-entity
-  id="leaf-1-1-0"
-  data-tree-id="tree-1-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
+<a-cone position="0 3.825 0" id="leaf-1-1-0"
+  data-start-offset="264" data-end-offset="276"
+  data-tree-id="tree-1-1" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-1-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-1-1"
-  data-tree-id="tree-1-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
+<a-cone position="0 4.66 0" id="leaf-1-1-0"
+  data-start-offset="138" data-end-offset="261"
+  data-tree-id="tree-1-1" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: nav;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: nav;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: nav;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: nav;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-1-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+</a-cone>
+
+<a-cone position="0 5.495 0" id="leaf-1-1-0"
+  data-start-offset="18" data-end-offset="135"
+  data-tree-id="tree-1-1" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: a;">
+    </a-entity>
+</a-cone>
+
+<a-cone position="0 6.33 0" id="leaf-1-1-0"
+  data-start-offset="10" data-end-offset="409"
+  data-tree-id="tree-1-1" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: nav;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: nav;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: nav;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: nav;">
+    </a-entity>
+</a-cone>
+
+<a-cone position="0 7.165 0" id="leaf-1-1-0"
+  data-start-offset="0" data-end-offset="9"
+  data-tree-id="tree-1-1" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-1-1"
                repeat="0">¬
   </a-animation>¬
@@ -1372,236 +1227,232 @@
 </a-entity>
 
 
-<a-entity id="tree-1-2" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="24.33333333333333 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: TabComponent;">
+<a-entity id="tree-1-2" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="24.33333333333333 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/shared/tab/tab.component.html">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: TabComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-1-2-0"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 2.9899999999999998 0" id="leaf-1-2-0"
+  data-start-offset="160" data-end-offset="169"
+  data-tree-id="tree-1-2" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-2-1"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 3.99 0" id="leaf-1-2-0"
+  data-start-offset="94" data-end-offset="103"
+  data-tree-id="tree-1-2" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-2-2"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 4.825 0" id="leaf-1-2-0"
+  data-start-offset="64" data-end-offset="89"
+  data-tree-id="tree-1-2" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-2-3"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0.7"
+<a-cone position="0 5.66 0" id="leaf-1-2-0"
+  data-start-offset="50" data-end-offset="59"
+  data-tree-id="tree-1-2" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-3"
-               fill="forwards"¬
-               to="-0.35 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-1-2-0"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
+<a-cone position="0 6.495 0" id="leaf-1-2-0"
+  data-start-offset="114" data-end-offset="182"
+  data-tree-id="tree-1-2" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-2-1"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
+<a-cone position="0 7.33 0" id="leaf-1-2-0"
+  data-start-offset="12" data-end-offset="111"
+  data-tree-id="tree-1-2" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-1-2-0"
-  data-tree-id="tree-1-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0 4.2 0"
+<a-cone position="0 8.165000000000001 0" id="leaf-1-2-0"
+  data-start-offset="0" data-end-offset="193"
+  data-tree-id="tree-1-2" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-2-0"
-               fill="forwards"¬
-               to="0 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-1-2"
                repeat="0">¬
   </a-animation>¬
@@ -1620,141 +1471,139 @@
 </a-entity>
 
 
-<a-entity id="tree-1-3" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="31.33333333333333 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: AboutFormComponent;">
+<a-entity id="tree-1-3" geometry="primitive: box; depth: 0.1; height: 9; width: 0.2" position="31.33333333333333 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/shared/about-form/about-form.component.html">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 9; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 9; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: AboutFormComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-1-3-0"
-  data-tree-id="tree-1-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 1.7 0" id="leaf-1-3-0"
+  data-start-offset="63" data-end-offset="80"
+  data-tree-id="tree-1-3" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-3-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-3-1"
-  data-tree-id="tree-1-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 2.7 0" id="leaf-1-3-0"
+  data-start-offset="24" data-end-offset="60"
+  data-tree-id="tree-1-3" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: textarea;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: textarea;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: textarea;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: textarea;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-3-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: textarea;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: textarea;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: textarea;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: textarea;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-1-3-2"
-  data-tree-id="tree-1-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 3.7 0" id="leaf-1-3-0"
+  data-start-offset="12" data-end-offset="21"
+  data-tree-id="tree-1-3" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-3-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-1-3-0"
-  data-tree-id="tree-1-3"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0 3.5 0"
+<a-cone position="0 4.7 0" id="leaf-1-3-0"
+  data-start-offset="0" data-end-offset="91"
+  data-tree-id="tree-1-3" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-1-3-0"
-               fill="forwards"¬
-               to="0 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-1-3"
                repeat="0">¬
   </a-animation>¬
@@ -1772,7 +1621,7 @@
   </a-animation>¬
 </a-entity>
 
-<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="24.799999999999997 1.8 16.2" rotation="0 -0.5988059633625831 0" material="shader: flat; side: double; background: #ddd;">
+<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="24.799999999999997 1.8 16.2" rotation="0 -14.988354647953123 0" material="shader: flat; side: double; background: #ddd;">
   <a-entity position="0 0 0" text="width: 4; color: #222; align: center; value: SharedModule;"></a-entity>
   <a-entity static-body="" geometry="primitive: plane; height: 1.5; width: 2" position="0 0 -0.02" rotation="0 0 0" material="shader: flat; side: double; src: url(images/wood.jpg); repeat: 2 2;"></a-entity>
   <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
@@ -1830,333 +1679,232 @@
 </a-entity>
 
 
-<a-entity id="tree-2-0" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="43.96666666666667 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: AboutComponent;">
+<a-entity id="tree-2-0" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="43.96666666666667 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/shippings/about.component.html">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 15; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: AboutComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-2-0-0"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.6999999999999998 2.8 0"
+<a-cone position="0 2.9899999999999998 0" id="leaf-2-0-0"
+  data-start-offset="374" data-end-offset="416"
+  data-tree-id="tree-2-0" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-0"
-               fill="forwards"¬
-               to="-0.6999999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-0-1"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.1102230246251565e-16 2.8 0"
+<a-cone position="0 3.99 0" id="leaf-2-0-0"
+  data-start-offset="284" data-end-offset="371"
+  data-tree-id="tree-2-0" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-1"
-               fill="forwards"¬
-               to="1.1102230246251565e-16 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-0-2"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.7000000000000001 2.8 0"
+<a-cone position="0 4.825 0" id="leaf-2-0-0"
+  data-start-offset="238" data-end-offset="281"
+  data-tree-id="tree-2-0" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-2"
-               fill="forwards"¬
-               to="0.7000000000000001 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-0-3"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.4 2.8 0"
+<a-cone position="0 5.66 0" id="leaf-2-0-0"
+  data-start-offset="144" data-end-offset="235"
+  data-tree-id="tree-2-0" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-3"
-               fill="forwards"¬
-               to="1.4 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-0-4"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.6999999999999998 2.8 0.7"
+<a-cone position="0 6.495 0" id="leaf-2-0-0"
+  data-start-offset="137" data-end-offset="608"
+  data-tree-id="tree-2-0" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-4"
-               fill="forwards"¬
-               to="-0.6999999999999998 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-0-5"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.1102230246251565e-16 2.8 0.7"
+<a-cone position="0 7.33 0" id="leaf-2-0-0"
+  data-start-offset="119" data-end-offset="136"
+  data-tree-id="tree-2-0" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-5"
-               fill="forwards"¬
-               to="1.1102230246251565e-16 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h2;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-0-6"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.7000000000000001 2.8 0.7"
+<a-cone position="0 8.165000000000001 0" id="leaf-2-0-0"
+  data-start-offset="0" data-end-offset="117"
+  data-tree-id="tree-2-0" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-6"
-               fill="forwards"¬
-               to="0.7000000000000001 0 0.7"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-<a-entity
-  id="leaf-2-0-0"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-2-0-1"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h2;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-2-0-2"
-  data-tree-id="tree-2-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 3.5 0"
-  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-0-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-2-0"
                repeat="0">¬
   </a-animation>¬
@@ -2175,205 +1923,201 @@
 </a-entity>
 
 
-<a-entity id="tree-2-1" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="50.96666666666667 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: ShippingComponent;">
+<a-entity id="tree-2-1" geometry="primitive: box; depth: 0.1; height: 13; width: 0.2" position="50.96666666666667 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 13; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 13; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: ShippingComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-2-1-0"
-  data-tree-id="tree-2-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 2.9899999999999998 0" id="leaf-2-1-0"
+  data-start-offset="96" data-end-offset="114"
+  data-tree-id="tree-2-1" radius-bottom="3" radius-top="0"
+  geometry="height: 4.3;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-1-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -2.26 2.67"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="-2.67 -2.26 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="2.67 -2.26 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0 -2.26 -2.67"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-1-1"
-  data-tree-id="tree-2-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 3.825 0" id="leaf-2-1-0"
+  data-start-offset="71" data-end-offset="89"
+  data-tree-id="tree-2-1" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-1-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-1-2"
-  data-tree-id="tree-2-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 4.66 0" id="leaf-2-1-0"
+  data-start-offset="46" data-end-offset="64"
+  data-tree-id="tree-2-1" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: p;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-1-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: p;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-2-1-0"
-  data-tree-id="tree-2-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
+<a-cone position="0 5.495 0" id="leaf-2-1-0"
+  data-start-offset="134" data-end-offset="158"
+  data-tree-id="tree-2-1" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: label;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: label;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: label;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: label;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-1-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: button;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-1-1"
-  data-tree-id="tree-2-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
+<a-cone position="0 6.33 0" id="leaf-2-1-0"
+  data-start-offset="30" data-end-offset="129"
+  data-tree-id="tree-2-1" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: section;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-1-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: section;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-1-2"
-  data-tree-id="tree-2-1"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 3.5 0"
+<a-cone position="0 7.165 0" id="leaf-2-1-0"
+  data-start-offset="5" data-end-offset="25"
+  data-tree-id="tree-2-1" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: button;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-1-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: label;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: label;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: label;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: label;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-2-1"
                repeat="0">¬
   </a-animation>¬
@@ -2392,173 +2136,170 @@
 </a-entity>
 
 
-<a-entity id="tree-2-2" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="43.96666666666667 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: ShippingsComponent;">
+<a-entity id="tree-2-2" geometry="primitive: box; depth: 0.1; height: 11; width: 0.2" position="43.96666666666667 0 11.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="">
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 11; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 11; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: ShippingsComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-2-2-0"
-  data-tree-id="tree-2-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
+<a-cone position="0 2.825 0" id="leaf-2-2-0"
+  data-start-offset="93" data-end-offset="112"
+  data-tree-id="tree-2-2" radius-bottom="2.5" radius-top="0"
+  geometry="height: 3.75;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-2-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.985 2.225"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-2.225 -1.985 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="2.225 -1.985 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.985 -2.225"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-2-1"
-  data-tree-id="tree-2-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
+<a-cone position="0 3.66 0" id="leaf-2-2-0"
+  data-start-offset="67" data-end-offset="86"
+  data-tree-id="tree-2-2" radius-bottom="2" radius-top="0"
+  geometry="height: 3.2;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-2-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.7100000000000002 1.78"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.78 -1.7100000000000002 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.78 -1.7100000000000002 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.7100000000000002 -1.78"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-2-2"
-  data-tree-id="tree-2-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
+<a-cone position="0 4.495 0" id="leaf-2-2-0"
+  data-start-offset="41" data-end-offset="60"
+  data-tree-id="tree-2-2" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: li;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-2-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: li;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-2-2-0"
-  data-tree-id="tree-2-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 3.5 0"
+<a-cone position="0 5.33 0" id="leaf-2-2-0"
+  data-start-offset="30" data-end-offset="122"
+  data-tree-id="tree-2-2" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: h1;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-2-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: ul;">
+    </a-entity>
+</a-cone>
 
-
-<a-entity
-  id="leaf-2-2-1"
-  data-tree-id="tree-2-2"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 3.5 0"
+<a-cone position="0 6.165 0" id="leaf-2-2-0"
+  data-start-offset="5" data-end-offset="25"
+  data-tree-id="tree-2-2" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
   material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: ul;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-2-2-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: red; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: h1;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-2-2"
                repeat="0">¬
   </a-animation>¬
@@ -2576,7 +2317,7 @@
   </a-animation>¬
 </a-entity>
 
-<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="44.43333333333333 1.8 16.2" rotation="0 5.2274970679060795 0" material="shader: flat; side: double; background: #ddd;">
+<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="44.43333333333333 1.8 16.2" rotation="0 7.774471788906984 0" material="shader: flat; side: double; background: #ddd;">
   <a-entity position="0 0 0" text="width: 4; color: #222; align: center; value: ShippingsModule;"></a-entity>
   <a-entity static-body="" geometry="primitive: plane; height: 1.5; width: 2" position="0 0 -0.02" rotation="0 0 0" material="shader: flat; side: double; src: url(images/wood.jpg); repeat: 2 2;"></a-entity>
   <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
@@ -2634,110 +2375,108 @@
 </a-entity>
 
 
-<a-entity id="tree-3-0" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="66.26666666666668 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4">
+<a-entity id="tree-3-0" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="66.26666666666668 0 4.1" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="/Users/mgechev/Projects/angular-crm/src/client/app/app.component.html">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: 7; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: AppComponent;">
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: AppComponent;">
   </a-entity>
   
-<a-entity
-  id="leaf-3-0-0"
-  data-tree-id="tree-3-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="-0.35 2.8 0"
-  material="shader: standard; metalness: 0.6; color: #C1F01A; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-toolbar;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-toolbar;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-toolbar;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-toolbar;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-3-0-0"
-               fill="forwards"¬
-               to="-0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+<a-cone position="0 1.7 0" id="leaf-3-0-0"
+  data-start-offset="50" data-end-offset="81"
+  data-tree-id="tree-3-0" radius-bottom="1.5" radius-top="0"
+  geometry="height: 2.65;"
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -1.435 1.335"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: router-outlet;">
+    </a-entity>
+    <a-entity position="-1.335 -1.435 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: router-outlet;">
+    </a-entity>
+    <a-entity position="1.335 -1.435 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: router-outlet;">
+    </a-entity>
+    <a-entity position="0 -1.435 -1.335"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: router-outlet;">
+    </a-entity>
+</a-cone>
 
+<a-cone position="0 2.7 0" id="leaf-3-0-0"
+  data-start-offset="26" data-end-offset="49"
+  data-tree-id="tree-3-0" radius-bottom="1" radius-top="0"
+  geometry="height: 2.1;"
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -1.1600000000000001 0.89"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-navbar;">
+    </a-entity>
+    <a-entity position="-0.89 -1.1600000000000001 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-navbar;">
+    </a-entity>
+    <a-entity position="0.89 -1.1600000000000001 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-navbar;">
+    </a-entity>
+    <a-entity position="0 -1.1600000000000001 -0.89"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-navbar;">
+    </a-entity>
+</a-cone>
 
-<a-entity
-  id="leaf-3-0-1"
-  data-tree-id="tree-3-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="0.35 2.8 0"
-  material="shader: standard; metalness: 0.6; color: #C1F01A; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-navbar;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-navbar;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-navbar;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: sd-navbar;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-3-0-1"
-               fill="forwards"¬
-               to="0.35 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
-
-
-<a-entity
-  id="leaf-3-0-2"
-  data-tree-id="tree-3-0"
-  geometry="primitive: box; depth: 0.7; height: 0.7; width: 0.7"
-  position="1.0499999999999998 2.8 0"
-  material="shader: standard; metalness: 0.6; color: #C1F01A; repeat: 1 1">
-  <a-entity position="0 0 0.35"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: router-outlet;">
-  </a-entity>
-  <a-entity position="-0.35 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: router-outlet;">
-  </a-entity>
-  <a-entity position="0.35 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: router-outlet;">
-  </a-entity>
-  <a-entity position="0 0 -0.35"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: router-outlet;">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-leaf-3-0-2"
-               fill="forwards"¬
-               to="1.0499999999999998 0 0"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+<a-cone position="0 3.7 0" id="leaf-3-0-0"
+  data-start-offset="0" data-end-offset="25"
+  data-tree-id="tree-3-0" radius-bottom="0.5" radius-top="0"
+  geometry="height: 1.55;"
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -0.885 0.445"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-toolbar;">
+    </a-entity>
+    <a-entity position="-0.445 -0.885 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-toolbar;">
+    </a-entity>
+    <a-entity position="0.445 -0.885 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-toolbar;">
+    </a-entity>
+    <a-entity position="0 -0.885 -0.445"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: goldenrod; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: sd-toolbar;">
+    </a-entity>
+</a-cone>
 
   <a-animation attribute="rotation"¬
                dur="150"¬
-               to="3 30 0"¬
+               to="5 30 0"¬
                begin="shake-front-tree-3-0"
                repeat="0">¬
   </a-animation>¬
@@ -2755,7 +2494,7 @@
   </a-animation>¬
 </a-entity>
 
-<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="64.06666666666666 1.8 16.2" rotation="0 3.913852888242163 0" material="shader: flat; side: double; background: #ddd;">
+<a-entity geometry="primitive: plane; height: 1.2; width: 2" position="64.06666666666666 1.8 16.2" rotation="0 5.286517603527237 0" material="shader: flat; side: double; background: #ddd;">
   <a-entity position="0 0 0" text="width: 4; color: #222; align: center; value: AppModule;"></a-entity>
   <a-entity static-body="" geometry="primitive: plane; height: 1.5; width: 2" position="0 0 -0.02" rotation="0 0 0" material="shader: flat; side: double; src: url(images/wood.jpg); repeat: 2 2;"></a-entity>
   <a-entity static-body="" geometry="primitive: cylinder; height: 2; radius: 0.06" position="1 -1 -0.1" rotation="0 0 0" material="shader: flat; src: url(images/log.jpg); repeat: 3 1"></a-entity>
@@ -2847,15 +2586,15 @@
 <a-entity static-body="" geometry="primitive: plane; height: 215.2; width: 196.8" position="37.333333333333336 -0.2 65.2" rotation="-90 0 0" material="shader: flat; src: url(images/grass.jpg); repeat: 200 200"></a-entity>
 
 <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
+  <!-- Snow -->
+  <a-entity position="0 2.25 -15" particle-system="preset: snow; particleCount: 5000"></a-entity>
+
   <!-- Camera -->
   <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 45" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
   <a-animation attribute="position" begin="roof" dur="0" to="134 8 2.1"></a-animation>
   <a-animation attribute="position" begin="start" dur="0" to="125 1.8 2.1"></a-animation>
-  <a-entity id="blockHand" hand-controls="right" controller-cursor intersection-spawn="event: click; mixin: voxel" position="0 0 5"></a-entity>
-  <a-cursor intersection-spawn="event: click; mixin: voxel"></a-cursor>
-  </a-entity>
   <!-- Lighting and background -->
-  <a-sky src="images/sky.jpg" radius="5000" material="color:#FFF;shader:flat;src:url(images/sky.jpg)" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="-1 1 1"></a-sky>
+  <a-sky  radius="5000" material="color:#000;shader:flat;" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="-1 1 1"></a-sky>
     <a-entity light="color:#fff;type:ambient" data-aframe-default-light=""></a-entity>
     <a-entity light="color:#fff;intensity:0.2" position="-1 2 1" data-aframe-default-light=""></a-entity>
     <canvas class="a-canvas" width="1152" height="1598" style="height: 799px; width: 576px;"></canvas>
@@ -2878,12 +2617,24 @@
       e.setAttribute('data-shaked', true);
     }
     const treeId = e.getAttribute('data-tree-id');
-    document.getElementById(treeId).emit('shake-front-' + treeId);
+    const tree = document.getElementById(treeId);
+    tree.emit('shake-front-' + treeId);
     setTimeout(() => {
       document.getElementById(treeId).emit('shake-back-' + treeId);
       setTimeout(() => document.getElementById(treeId).emit('shake-ready-' + treeId), 150);
     }, 150);
     e.emit('shake-' + e.id);
+    fetch('http://localhost:8081', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        file: tree.getAttribute('data-template-url'),
+        start: e.getAttribute('data-start-offset'),
+        end: e.getAttribute('data-end-offset')
+      })
+    });
   }));
 }());
 </script>
