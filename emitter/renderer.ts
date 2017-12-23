@@ -410,11 +410,7 @@ const getTrees = (trees: TreeLayout[], gardenId: number) => {
         x: t.position.x,
         z: t.position.z,
         y: 0,
-<<<<<<< HEAD
         height: Math.min(10, t.leaves.length) * 2 + 1,
-=======
-        height: TreeHeight,
->>>>>>> master
         label: t.name,
         id: 'tree-' + gardenId + '-' + idx,
         leaves: '',
@@ -424,11 +420,7 @@ const getTrees = (trees: TreeLayout[], gardenId: number) => {
       idx
     ])
     .map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
-<<<<<<< HEAD
       const leaves = getLeaves(layout, props, 'leaf-' + gardenId + '-' + treeIdx);
-=======
-      const leaves = getLeaves(layout.leaves, 'leaf-' + gardenId + '-' + treeIdx, props.id);
->>>>>>> master
       props.leaves = leaves;
       return render(TreeTemplate, props);
     })
@@ -508,14 +500,14 @@ const renderFloor = (p: Position, s: Size) => {
 };
 
 export const renderWorld = (layout: WorldLayout) => {
-  console.log(cyan('🌍 Rendering world...'));
+  console.log(cyan('🎁 Rendering world...'));
 
   const gardens = layout.gardens.map((g, idx) => renderGarden(g, idx)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
   const world = Header + gardens + frame + floor + Footer;
 
-  console.log(green('✅ World rendered!'));
+  console.log(green('✅  World rendered!'));
 
   return world;
 };
