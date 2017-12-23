@@ -3,14 +3,11 @@
   "version": "0.0.6",
   "description": "VR from an Angular app",
   "main": "index.js",
-  "keywords": [
-    "vr",
-    "angular",
-    "compiler"
-  ],
+  "keywords": ["vr", "angular", "compiler"],
   "author": "Minko Gechev <mgechev@gmail.com>",
   "scripts": {
-    "release": "rm -rf dist && tsc && cp README.md dist && mkdir dist/images && cp -r images dist && mkdir dist/src && cp node_modules/aframe-controller-cursor-component/dist/aframe-controller-cursor-component.min.js dist/src && cp node_modules/aframe/dist/aframe-master.js dist/src && cp node_modules/aframe/dist/aframe-master.js.map dist/src && cp node_modules/aframe-extras/dist/aframe-extras.min.js dist/src && cp favicon.png dist && cp -r bin dist && cp package.json dist && ts-node tools/cleanup.ts"
+    "release":
+      "rm -rf dist && tsc && cp README.md dist && mkdir dist/images && cp -r images dist && mkdir dist/src && cp node_modules/aframe-controller-cursor-component/dist/aframe-controller-cursor-component.min.js dist/src && cp node_modules/aframe/dist/aframe-master.js dist/src && cp node_modules/aframe/dist/aframe-master.js.map dist/src && cp node_modules/aframe-extras/dist/aframe-extras.min.js dist/src && cp favicon.png dist && cp -r bin dist && cp package.json dist && ts-node tools/cleanup.ts"
   },
   "bin": {
     "ngworld": "./bin/ngworld"
@@ -24,9 +21,9 @@
     "@types/node": "^7.0.8"
   },
   "dependencies": {
-    "@angular/compiler": "^4.2.3",
-    "@angular/compiler-cli": "4.2.3",
-    "@angular/core": "^4.2.3",
+    "@angular/compiler": "^5.1.0",
+    "@angular/compiler-cli": "5.1.0",
+    "@angular/core": "^5.1.0",
     "aframe": "^0.5.0",
     "aframe-controller-cursor-component": "^0.2.7",
     "aframe-extras": "^3.3.4",
@@ -35,10 +32,10 @@
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
     "ncp": "^2.0.0",
-    "ngast": "0.0.27",
-    "rxjs": "^5.2.0",
+    "ngast": "0.1.0",
+    "rxjs": "^5.5.0",
     "ts-node": "^3.0.2",
-    "typescript": "^2.2.1",
+    "typescript": "~2.5.0",
     "zone.js": "^0.8.4"
   }
 }
