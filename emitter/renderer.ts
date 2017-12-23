@@ -369,9 +369,9 @@ const getLeaves = (layout: TreeLayout, tree: TreeProperties, partialId: string) 
   const renderLevel = (leaves: LeaveSet, level: number) => {
     const perRow = Math.ceil(Math.sqrt(leaves.length));
     const result: string[] = [];
-    const dimensions = Math.min((level + 1) * 0.5, 2.5);
-    const height = dimensions + dimensions * 0.2 + 1;
-    const fromBottom = (leaveSets.length - 1 - level) * (height / 3) + tree.height / 2 - height + 1.5;
+    const dimensions = Math.min(Math.min(level + 1, 7) * 0.5, 3);
+    const height = dimensions + dimensions * 0.1 + 1;
+    const fromBottom = leaveSets.length - 1 - level + 1.7 + height * (leaveSets.length >= 5 ? 0.3 : 0);
     for (let i = 0; i < leaves.length; i += 1) {
       let leaf = leaves[i];
       let leafId = partialId + '-' + i;

@@ -7,9 +7,7 @@ import { parse } from './parser';
 import { emit } from './emitter';
 import { ncp } from 'ncp';
 
-const error = message => {
-  console.error(bgRed.white(message));
-};
+const error = message => console.error(bgRed.white(message));
 
 const projectPath = '/Users/mgechev/Projects/angular-seed/src/client/tsconfig.json'; //(minimist(process.argv.slice(2)) as any).p;
 

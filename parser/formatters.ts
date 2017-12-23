@@ -20,7 +20,7 @@ export enum NodeType {
 
 export interface Node {
   name: string;
-  type: NodeType,
+  type: NodeType;
   children: Node[];
   startOffset: number;
   endOffset: number;
@@ -34,14 +34,13 @@ export const formatContext = (context: ProjectSymbols) => {
 };
 
 const formatModules = (modules: ModuleSymbol[]) => {
-  return modules.map(m => ({
-    name: m.symbol.name,
-    components: formatComponents(m.getDeclaredDirectives())
-  }))
-  .filter(m => m.components.length >= 1);
+  return modules
+    .map(m => ({
+      name: m.symbol.name,
+      components: formatComponents(m.getDeclaredDirectives())
+    }))
+    .filter(m => m.components.length >= 1);
 };
-
-
 
 const transformTemplateAst = (template: TemplateAst) => {
   let result: Node = null;
@@ -59,18 +58,31 @@ const transformTemplateAst = (template: TemplateAst) => {
         child.children.map(addNode.bind(null, node));
       }
     };
-    result = { name: template.name, startOffset: template.sourceSpan.start.offset, endOffset: template.endSourceSpan.end.offset, type: template.directives.length ? NodeType.Custom : NodeType.Plain, children: [] };
+    result = {
+      name: template.name,
+      startOffset: template.sourceSpan.start.offset,
+      endOffset: template.endSourceSpan.end.offset,
+      type: template.directives.length ? NodeType.Custom : NodeType.Plain,
+      children: []
+    };
     template.children.forEach(addNode.bind(null, result));
   }
   return result;
 };
 
+const flatten = (nodes: Node[], result: Node[] = []): Node[] =>
+  nodes.length
+    ? [].concat.call([], result.concat(nodes), [].concat.apply([], nodes.map(n => flatten(n.children, []))))
+    : [];
+
 const formatComponents = (directives: DirectiveSymbol[]) => {
-  return directives.map(d => ({
-    name: d.symbol.name,
-    template: (d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n),
-    // Depends on the line above for
-    // resolution of the absolute path.
-    templateUrl: (d.getNonResolvedMetadata().template || {} as any).templateUrl
-  })).filter(d => d.template.length >= 1);
+  return directives
+    .map(d => ({
+      name: d.symbol.name,
+      template: flatten((d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n)),
+      // Depends on the line above for
+      // resolution of the absolute path.
+      templateUrl: (d.getNonResolvedMetadata().template || ({} as any)).templateUrl
+    }))
+    .filter(d => d.template.length >= 1);
 };
