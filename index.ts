@@ -9,7 +9,7 @@ import { ncp } from 'ncp';
 
 const error = message => console.error(bgRed.white(message));
 
-const projectPath = '/Users/mgechev/Projects/angular-seed/src/client/tsconfig.json'; //(minimist(process.argv.slice(2)) as any).p;
+const projectPath = '/Users/mgechev/Projects/angular-crm/src/client/tsconfig.json'; //(minimist(process.argv.slice(2)) as any).p;
 
 if (typeof projectPath !== 'string') {
   error('Specify the path to the root "tsconfig" file of your project with the "-p" flag');

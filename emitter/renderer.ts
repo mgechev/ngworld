@@ -21,27 +21,29 @@ const Header = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="favicon.png">
-  <title>ngworld</title>
+  <title>ng-xmas</title>
   <script src="./src/aframe-master.js"></script>
   <script src="./src/aframe-extras.min.js"></script>
   <script src="./src/aframe-controller-cursor-component.min.js"></script>
+  <script src="./src/aframe-particle-system-component.min.js"></script>
 </head>
 <body>
+  <a href="https://github.com/mgechev" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="z-index: 100000; fill:goldenrod; color:#fff; position: fixed; top: 20px; border: 0; left: 20px; transform: scale(-1.5, 1.5);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
   <a-scene physics="" canvas="" keyboard-shortcuts="" vr-mode-ui="">
 
 `;
 
 const Footer = `
 <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
+  <!-- Snow -->
+  <!--<a-entity position="0 2.25 -15" particle-system="preset: snow; particleCount: 5000"></a-entity>-->
+
   <!-- Camera -->
   <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="0 1.4515555555555555 0" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
   <a-animation attribute="position" begin="roof" dur="0" to="134 8 2.1"></a-animation>
   <a-animation attribute="position" begin="start" dur="0" to="125 1.8 2.1"></a-animation>
-  <a-entity id="blockHand" hand-controls="right" controller-cursor intersection-spawn="event: click; mixin: voxel" position="0 0 5"></a-entity>
-  <a-cursor intersection-spawn="event: click; mixin: voxel"></a-cursor>
-  </a-entity>
   <!-- Lighting and background -->
-  <a-sky src="images/sky.jpg" radius="5000" material="color:#FFF;shader:flat;src:url(images/sky.jpg)" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="-1 1 1"></a-sky>
+  <a-sky  radius="5000" material="color:#000;shader:flat;" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="-1 1 1"></a-sky>
     <a-entity light="color:#fff;type:ambient" data-aframe-default-light=""></a-entity>
     <a-entity light="color:#fff;intensity:0.2" position="-1 2 1" data-aframe-default-light=""></a-entity>
     <canvas class="a-canvas" width="1152" height="1598" style="height: 799px; width: 576px;"></canvas>
@@ -122,37 +124,33 @@ const LeafTemplate = `
   data-start-offset="{{startOffset}}" data-end-offset="{{endOffset}}"
   data-tree-id="{{treeId}}" radius-bottom="{{radiusBottom}}" radius-top="0"
   geometry="height: {{height}};"
-  material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+  material="shader: standard; metalness: 0.6; color: #8CB300; repeat: 1 1">
+    <a-entity position="0 -{{halfHeight}} {{halfLeaf}}"
+      rotation="0 0 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: {{label}};">
+    </a-entity>
+    <a-entity position="-{{halfLeaf}} -{{halfHeight}} 0"
+      rotation="0 -90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: {{label}};">
+    </a-entity>
+    <a-entity position="{{halfLeaf}} -{{halfHeight}} 0"
+      rotation="0 90 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: {{label}};">
+    </a-entity>
+    <a-entity position="0 -{{halfHeight}} -{{halfLeaf}}"
+      rotation="0 180 0"
+      geometry="primitive: sphere; radius: 0.1"
+      material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+      text="side: double; width: 30; color: white; align: center; value: {{label}};">
+    </a-entity>
 </a-cone>
 `;
-
-// geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
-
-// material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
-// <a-entity position="0 0 {{halfLeaf}}"
-//   rotation="0 0 0"
-//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
-// </a-entity>
-// <a-entity position="-{{halfLeaf}} 0 0"
-//   rotation="0 -90 0"
-//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
-// </a-entity>
-// <a-entity position="{{halfLeaf}} 0 0"
-//   rotation="0 90 0"
-//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
-// </a-entity>
-// <a-entity position="0 0 -{{halfLeaf}}"
-//   rotation="0 180 0"
-//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
-// </a-entity>
-// <a-animation attribute="position"¬
-//              dur="1000"¬
-//              begin="shake-{{id}}"
-//              fill="forwards"¬
-//              to="{{x}} 0 {{z}}"¬
-//              repeat="0">¬
-// </a-animation>¬
-// </a-entity>
 
 const BoxTemplate = `
 <a-entity
@@ -218,6 +216,7 @@ interface LeafProperties {
   radiusBottom: number;
   height: number;
   halfLeaf: number;
+  halfHeight: number;
   id: string;
   treeId: string;
   endOffset: number;
@@ -379,13 +378,14 @@ const getLeaves = (layout: TreeLayout, tree: TreeProperties, partialId: string) 
         startOffset: leaf.startOffset,
         endOffset: leaf.endOffset,
         label: leaf.label,
-        color: leaf.type === LeafType.Plain ? '#8CB300' : '#C1F01A',
+        color: leaf.type === LeafType.Plain ? 'red' : 'goldenrod',
         x: 0,
         y: fromBottom,
         z: 0,
         radiusBottom: dimensions,
         height,
-        halfLeaf: LeafWidth / 2,
+        halfHeight: height / 2 + 0.11,
+        halfLeaf: dimensions - dimensions * 0.11,
         treeId: treeId,
         id: leafId
       };
