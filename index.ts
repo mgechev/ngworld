@@ -1,4 +1,4 @@
-import * as minimist from 'minimist'
+import * as minimist from 'minimist';
 import { bgRed } from 'chalk';
 import { writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
@@ -26,7 +26,7 @@ if (!existsSync(projectPath)) {
 const cp = (src: string, dest: string, cb: Function) => {
   ncp(src, dest, error => {
     if (error) {
-      console.error('Sorry but I wasn\'t able to create the world because of this error: ', error);
+      console.error("Sorry but I wasn't able to create the world because of this error: ", error);
       process.exit(1);
     } else {
       cb();
@@ -39,9 +39,8 @@ const world = emit(parse(projectPath));
 cp(join(__dirname, 'src'), 'src', () => {
   cp(join(__dirname, 'images'), 'images', () => {
     cp(join(__dirname, 'favicon.png'), 'favicon.png', () => {
-      console.log('🌍 Enjoy your ngworld!🌍');
+      console.log('🎄 Enjoy your ng-xmas! 🎄');
       writeFileSync('index.html', world);
     });
   });
 });
-
