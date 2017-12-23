@@ -36,10 +36,10 @@ const Header = `<!DOCTYPE html>
 const Footer = `
 <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
   <!-- Snow -->
-  <!--<a-entity position="0 2.25 -15" particle-system="preset: snow; particleCount: 5000"></a-entity>-->
+  <a-entity position="0 2.25 -15" particle-system="preset: snow; particleCount: 5000"></a-entity>
 
   <!-- Camera -->
-  <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="0 1.4515555555555555 0" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
+  <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 45" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
   <a-animation attribute="position" begin="roof" dur="0" to="134 8 2.1"></a-animation>
   <a-animation attribute="position" begin="start" dur="0" to="125 1.8 2.1"></a-animation>
   <!-- Lighting and background -->
