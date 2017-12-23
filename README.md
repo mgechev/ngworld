@@ -26,6 +26,8 @@ The world embeds the following rules:
   * The template is being flatten after which the `ngworld` compiler consumes up to 7 elements.
   * If there's at least one directive attached to any of the elements, the toys on this layer of the tree are shown with `goldenrod` color otherwise they are `red`.
 
+`ngworld` uses particle system plugin which performs heavy computations which can dramatically reduce the framerate. In order to prevent this, it's snowing only over a particular region of the world.
+
 ### How to Install
 
 The Christmas edition of ngworld is behind the version `0.0.9-xmas`:
