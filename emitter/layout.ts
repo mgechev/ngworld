@@ -271,7 +271,7 @@ export const createWorldLayout = (modules: Module[]): WorldLayout => {
   const gardens = getGardensLayout(modules);
   const layout = getWorldLayout(gardens);
 
-  console.log(green('✅ Layout calculated!'));
+  console.log(green('✅  Layout calculated!'));
 
   return {
     size: layout.size,

@@ -26,7 +26,7 @@ export const createProgramFromTsConfig = (configFile: string, overrideFiles: str
   const host = ts.createCompilerHost(parsed.options, true);
   const program = ts.createProgram(overrideFiles || parsed.fileNames, parsed.options, host);
 
-  console.log(green('✅ Program created!'));
+  console.log(green('✅  Program created!'));
 
   return program;
 };

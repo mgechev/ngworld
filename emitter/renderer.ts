@@ -513,7 +513,7 @@ export const renderWorld = (layout: WorldLayout) => {
   const floor = renderFloor(layout.position, layout.size);
   const world = Header + gardens + frame + floor + Footer;
 
-  console.log(green('✅ World rendered!'));
+  console.log(green('✅  World rendered!'));
 
   return world;
 };
