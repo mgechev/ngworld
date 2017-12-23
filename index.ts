@@ -11,7 +11,7 @@ const error = message => {
   console.error(bgRed.white(message));
 };
 
-const projectPath = (minimist(process.argv.slice(2)) as any).p;
+const projectPath = '/Users/mgechev/Projects/angular-seed/src/client/tsconfig.json'; //(minimist(process.argv.slice(2)) as any).p;
 
 if (typeof projectPath !== 'string') {
   error('Specify the path to the root "tsconfig" file of your project with the "-p" flag');
@@ -26,7 +26,7 @@ if (!existsSync(projectPath)) {
 const cp = (src: string, dest: string, cb: Function) => {
   ncp(src, dest, error => {
     if (error) {
-      console.error("Sorry but I wasn't able to create the world because of this error: ", error);
+      console.error("Sorry, but I wasn't able to create the world because of this error: ", error);
       process.exit(1);
     } else {
       cb();
@@ -36,11 +36,11 @@ const cp = (src: string, dest: string, cb: Function) => {
 
 const world = emit(parse(projectPath));
 
-cp(join(__dirname, 'src'), 'src', () => {
-  cp(join(__dirname, 'images'), 'images', () => {
-    cp(join(__dirname, 'favicon.png'), 'favicon.png', () => {
+cp(join(__dirname, 'src'), '/Users/mgechev/Desktop/src', () => {
+  cp(join(__dirname, 'images'), '/Users/mgechev/Desktop/images', () => {
+    cp(join(__dirname, 'favicon.png'), '/Users/mgechev/Desktop/favicon.png', () => {
       console.log('🎄 Enjoy your ng-xmas! 🎄');
-      writeFileSync('index.html', world);
+      writeFileSync('/Users/mgechev/Desktop/index.html', world);
     });
   });
 });

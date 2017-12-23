@@ -2,10 +2,19 @@ import { render } from 'mustache';
 import { cyan, green } from 'chalk';
 
 import { Module, Component } from '../parser/formatters';
-import { WorldLayout, GardenLayout, WallThickness, TreeLayout, TreeWidth, LeaveSet, LeafType, Position, Size } from './layout';
+import {
+  WorldLayout,
+  GardenLayout,
+  WallThickness,
+  TreeLayout,
+  TreeWidth,
+  LeaveSet,
+  LeafType,
+  Position,
+  Size
+} from './layout';
 
-const Header =
-`<!DOCTYPE html>
+const Header = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -25,7 +34,7 @@ const Header =
 const Footer = `
 <a-entity id="restart" static-body="" geometry="primitive: plane; height: 400; width: 400" position="0 -5 0" rotation="-90 0 0" material="shader: flat; color: green"></a-entity>
   <!-- Camera -->
-  <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="11 1.4515555555555555 45" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
+  <a-entity id="camera" camera="active:true" universal-controls="" kinematic-body="" jump-ability="enableDoubleJump: true; distance: 3;" position="0 1.4515555555555555 0" velocity="0 0 0" gamepad-controls="" keyboard-controls="" touch-controls="" hmd-controls="" mouse-controls="" rotation="4.35447924299426 92.93375437021959 0">
   <a-animation attribute="position" begin="roof" dur="0" to="134 8 2.1"></a-animation>
   <a-animation attribute="position" begin="start" dur="0" to="125 1.8 2.1"></a-animation>
   <a-entity id="blockHand" hand-controls="right" controller-cursor intersection-spawn="event: click; mixin: voxel" position="0 0 5"></a-entity>
@@ -84,7 +93,7 @@ const TreeTemplate = `
 <a-entity id="{{id}}" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="{{x}} {{y}} {{z}}" rotation="0 30 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4" data-template-url="{{{templateUrl}}}">
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="-0.1 0 0" rotation="2 60 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
   <a-entity static-body="" geometry="primitive: box; depth: 0.1; height: {{height}}; width: 0.2" position="0 0 0.1" rotation="2 -90 0" material="shader: standard; metalness: 0.6; src: url(images/dirt.jpg); repeat: 1 4"></a-entity>
-  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: white; align: center; value: {{label}};">
+  <a-entity position="0 0 0.4" rotation="-35 -30 0" text="side: double; width: 5; color: black; align: center; value: {{label}};">
   </a-entity>
   {{{leaves}}}
   <a-animation attribute="rotation"¬
@@ -109,39 +118,41 @@ const TreeTemplate = `
 `;
 
 const LeafTemplate = `
-<a-entity
-  id="{{id}}"
-  data-start-offset="{{startOffset}}"
-  data-end-offset="{{endOffset}}"
-  data-tree-id="{{treeId}}"
-  geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
-  position="{{x}} {{y}} {{z}}"
+<a-cone position="{{x}} {{y}} {{z}}" id="{{id}}"
+  data-start-offset="{{startOffset}}" data-end-offset="{{endOffset}}"
+  data-tree-id="{{treeId}}" radius-bottom="{{radiusBottom}}" radius-top="0"
+  geometry="height: {{height}};"
   material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
-  <a-entity position="0 0 {{halfLeaf}}"
-    rotation="0 0 0"
-    text="side: double; width: 2; color: white; align: center; value: {{label}};">
-  </a-entity>
-  <a-entity position="-{{halfLeaf}} 0 0"
-    rotation="0 -90 0"
-    text="side: double; width: 2; color: white; align: center; value: {{label}};">
-  </a-entity>
-  <a-entity position="{{halfLeaf}} 0 0"
-    rotation="0 90 0"
-    text="side: double; width: 2; color: white; align: center; value: {{label}};">
-  </a-entity>
-  <a-entity position="0 0 -{{halfLeaf}}"
-    rotation="0 180 0"
-    text="side: double; width: 2; color: white; align: center; value: {{label}};">
-  </a-entity>
-  <a-animation attribute="position"¬
-               dur="1000"¬
-               begin="shake-{{id}}"
-               fill="forwards"¬
-               to="{{x}} 0 {{z}}"¬
-               repeat="0">¬
-  </a-animation>¬
-</a-entity>
+</a-cone>
 `;
+
+// geometry="primitive: box; depth: {{depth}}; height: {{height}}; width: {{width}}"
+
+// material="shader: standard; metalness: 0.6; color: {{color}}; repeat: 1 1">
+// <a-entity position="0 0 {{halfLeaf}}"
+//   rotation="0 0 0"
+//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
+// </a-entity>
+// <a-entity position="-{{halfLeaf}} 0 0"
+//   rotation="0 -90 0"
+//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
+// </a-entity>
+// <a-entity position="{{halfLeaf}} 0 0"
+//   rotation="0 90 0"
+//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
+// </a-entity>
+// <a-entity position="0 0 -{{halfLeaf}}"
+//   rotation="0 180 0"
+//   text="side: double; width: 2; color: white; align: center; value: {{label}};">
+// </a-entity>
+// <a-animation attribute="position"¬
+//              dur="1000"¬
+//              begin="shake-{{id}}"
+//              fill="forwards"¬
+//              to="{{x}} 0 {{z}}"¬
+//              repeat="0">¬
+// </a-animation>¬
+// </a-entity>
 
 const BoxTemplate = `
 <a-entity
@@ -204,9 +215,8 @@ interface LeafProperties {
   y: number;
   z: number;
   label: string;
-  width: number;
+  radiusBottom: number;
   height: number;
-  depth: number;
   halfLeaf: number;
   id: string;
   treeId: string;
@@ -250,9 +260,7 @@ interface BoxProperties {
 }
 
 const DoorSize = { width: 3, height: 1.5 };
-const TreeHeight = 7;
 const TreeBase = 1;
-const LeafHeight = 0.7;
 const LeafWidth = 0.7;
 const LeafDepth = 0.7;
 
@@ -304,12 +312,14 @@ const getFrontWalls = (garden: GardenLayout) => {
     align: 'center',
     color: 'white',
     width: 2,
-    rotation: (Math.random() * 15) * ((Math.random() > 0.5) ? -1 : 1)
+    rotation: Math.random() * 15 * (Math.random() > 0.5 ? -1 : 1)
   };
-  return render(ModuleLabelTemplate, moduleLabel) +
+  return (
+    render(ModuleLabelTemplate, moduleLabel) +
     // render(BoxTemplate, frontTop) +
     render(BoxTemplate, frontBottomLeft) +
-    render(BoxTemplate, frontBottomRight);
+    render(BoxTemplate, frontBottomRight)
+  );
 };
 
 const getSideWalls = (garden: GardenLayout) => {
@@ -352,17 +362,16 @@ const getSideWalls = (garden: GardenLayout) => {
   return render(BoxTemplate, leftWall) + render(BoxTemplate, rightWall) + render(BoxTemplate, backWall);
 };
 
-const getLeaves = (leaveSets: LeaveSet[], partialId: string, treeId: string) => {
+const getLeaves = (layout: TreeLayout, tree: TreeProperties, partialId: string) => {
+  const leaveSets = layout.leaves;
+  const treeId = tree.id;
   const totalLevels = leaveSets.length;
   const renderLevel = (leaves: LeaveSet, level: number) => {
-    const fromBottom = (leaveSets.length - 1 - level) * LeafHeight + TreeHeight / 2 - LeafHeight;
     const perRow = Math.ceil(Math.sqrt(leaves.length));
     const result: string[] = [];
-    let rowXWidth = perRow * LeafWidth;
-    const initialX = -(rowXWidth - LeafWidth) / 2;
-    const initialZ = 0;
-    let currentX = initialX;
-    let currentZ = initialZ;
+    const dimensions = Math.min((level + 1) * 0.5, 2.5);
+    const height = dimensions + dimensions * 0.2 + 1;
+    const fromBottom = (leaveSets.length - 1 - level) * (height / 3) + tree.height / 2 - height + 1.5;
     for (let i = 0; i < leaves.length; i += 1) {
       let leaf = leaves[i];
       let leafId = partialId + '-' + i;
@@ -371,23 +380,19 @@ const getLeaves = (leaveSets: LeaveSet[], partialId: string, treeId: string) => 
         endOffset: leaf.endOffset,
         label: leaf.label,
         color: leaf.type === LeafType.Plain ? '#8CB300' : '#C1F01A',
-        x: currentX,
+        x: 0,
         y: fromBottom,
-        z: currentZ,
-        width: LeafWidth,
-        height: LeafHeight,
-        depth: LeafDepth,
+        z: 0,
+        radiusBottom: dimensions,
+        height,
         halfLeaf: LeafWidth / 2,
         treeId: treeId,
         id: leafId
       };
       result.push(render(LeafTemplate, leafProps));
-      currentX += LeafWidth;
-      if (currentX > rowXWidth + initialX) {
-        currentX = initialX;
-        currentZ += LeafDepth;
-      }
     }
+    // 0.5 - 2.5
+    // 0.5, 1, 1.5, 2, ...
     return result.join('\n');
   };
 
@@ -399,20 +404,27 @@ const getLeaves = (leaveSets: LeaveSet[], partialId: string, treeId: string) => 
 };
 
 const getTrees = (trees: TreeLayout[], gardenId: number) => {
-  return trees.map((t, idx) => [{
-    x: t.position.x,
-    z: t.position.z,
-    y: 0,
-    height: TreeHeight,
-    label: t.name,
-    id: 'tree-' + gardenId + '-' + idx,
-    leaves: '',
-    templateUrl: t.templateUrl
-  }, t, idx]).map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
-    const leaves = getLeaves(layout.leaves, 'leaf-' + gardenId + '-' + treeIdx, props.id);
-    props.leaves = leaves;
-    return render(TreeTemplate, props);
-  }).join('\n');
+  return trees
+    .map((t, idx) => [
+      {
+        x: t.position.x,
+        z: t.position.z,
+        y: 0,
+        height: Math.min(10, t.leaves.length) * 2 + 1,
+        label: t.name,
+        id: 'tree-' + gardenId + '-' + idx,
+        leaves: '',
+        templateUrl: t.templateUrl
+      },
+      t,
+      idx
+    ])
+    .map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
+      const leaves = getLeaves(layout, props, 'leaf-' + gardenId + '-' + treeIdx);
+      props.leaves = leaves;
+      return render(TreeTemplate, props);
+    })
+    .join('\n');
 };
 
 const renderGarden = (garden: GardenLayout, idx: number) => {
@@ -468,10 +480,12 @@ const renderFrame = (p: Position, size: Size) => {
     rotateZ: 0
   };
 
-  return render(FrameTemplate, front) +
+  return (
+    render(FrameTemplate, front) +
     render(FrameTemplate, back) +
     render(FrameTemplate, left) +
-    render(FrameTemplate, right);
+    render(FrameTemplate, right)
+  );
 };
 
 const renderFloor = (p: Position, s: Size) => {
@@ -497,4 +511,3 @@ export const renderWorld = (layout: WorldLayout) => {
 
   return world;
 };
-
