@@ -2,10 +2,19 @@ import { render } from 'mustache';
 import { cyan, green } from 'chalk';
 
 import { Module, Component } from '../parser/formatters';
-import { WorldLayout, GardenLayout, WallThickness, TreeLayout, TreeWidth, LeaveSet, LeafType, Position, Size } from './layout';
+import {
+  WorldLayout,
+  GardenLayout,
+  WallThickness,
+  TreeLayout,
+  TreeWidth,
+  LeaveSet,
+  LeafType,
+  Position,
+  Size
+} from './layout';
 
-const Header =
-`<!DOCTYPE html>
+const Header = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -304,12 +313,14 @@ const getFrontWalls = (garden: GardenLayout) => {
     align: 'center',
     color: 'white',
     width: 2,
-    rotation: (Math.random() * 15) * ((Math.random() > 0.5) ? -1 : 1)
+    rotation: Math.random() * 15 * (Math.random() > 0.5 ? -1 : 1)
   };
-  return render(ModuleLabelTemplate, moduleLabel) +
+  return (
+    render(ModuleLabelTemplate, moduleLabel) +
     // render(BoxTemplate, frontTop) +
     render(BoxTemplate, frontBottomLeft) +
-    render(BoxTemplate, frontBottomRight);
+    render(BoxTemplate, frontBottomRight)
+  );
 };
 
 const getSideWalls = (garden: GardenLayout) => {
@@ -399,20 +410,27 @@ const getLeaves = (leaveSets: LeaveSet[], partialId: string, treeId: string) => 
 };
 
 const getTrees = (trees: TreeLayout[], gardenId: number) => {
-  return trees.map((t, idx) => [{
-    x: t.position.x,
-    z: t.position.z,
-    y: 0,
-    height: TreeHeight,
-    label: t.name,
-    id: 'tree-' + gardenId + '-' + idx,
-    leaves: '',
-    templateUrl: t.templateUrl
-  }, t, idx]).map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
-    const leaves = getLeaves(layout.leaves, 'leaf-' + gardenId + '-' + treeIdx, props.id);
-    props.leaves = leaves;
-    return render(TreeTemplate, props);
-  }).join('\n');
+  return trees
+    .map((t, idx) => [
+      {
+        x: t.position.x,
+        z: t.position.z,
+        y: 0,
+        height: TreeHeight,
+        label: t.name,
+        id: 'tree-' + gardenId + '-' + idx,
+        leaves: '',
+        templateUrl: t.templateUrl
+      },
+      t,
+      idx
+    ])
+    .map(([props, layout, treeIdx]: [TreeProperties, TreeLayout, number]) => {
+      const leaves = getLeaves(layout.leaves, 'leaf-' + gardenId + '-' + treeIdx, props.id);
+      props.leaves = leaves;
+      return render(TreeTemplate, props);
+    })
+    .join('\n');
 };
 
 const renderGarden = (garden: GardenLayout, idx: number) => {
@@ -468,10 +486,12 @@ const renderFrame = (p: Position, size: Size) => {
     rotateZ: 0
   };
 
-  return render(FrameTemplate, front) +
+  return (
+    render(FrameTemplate, front) +
     render(FrameTemplate, back) +
     render(FrameTemplate, left) +
-    render(FrameTemplate, right);
+    render(FrameTemplate, right)
+  );
 };
 
 const renderFloor = (p: Position, s: Size) => {
@@ -486,15 +506,14 @@ const renderFloor = (p: Position, s: Size) => {
 };
 
 export const renderWorld = (layout: WorldLayout) => {
-  console.log(cyan('🌍  Rendering world...'));
+  console.log(cyan('🌍 Rendering world...'));
 
   const gardens = layout.gardens.map((g, idx) => renderGarden(g, idx)).join('\n');
   const frame = renderFrame(layout.position, layout.size);
   const floor = renderFloor(layout.position, layout.size);
   const world = Header + gardens + frame + floor + Footer;
 
-  console.log(green('✅  World rendered!'));
+  console.log(green('✅ World rendered!'));
 
   return world;
 };
-

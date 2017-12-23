@@ -61,7 +61,7 @@ export interface WorldLayout {
 }
 
 const getWorldLayout = (gardens: GardenLayout[]) => {
-  console.log(cyan('💻  Calculating world layout...'));
+  console.log(cyan('💻 Calculating world layout...'));
 
   let minX = Infinity;
   let minZ = Infinity;
@@ -77,10 +77,10 @@ const getWorldLayout = (gardens: GardenLayout[]) => {
     const t = gardens[i];
     if (maxX < t.position.x) {
       maxX = t.position.x;
-    } 
+    }
     if (maxZ < t.position.z) {
       maxZ = t.position.z;
-    } 
+    }
     if (minX > t.position.x) {
       minX = t.position.x;
     }
@@ -123,7 +123,8 @@ const getLeaves = (template: Node[]) => {
 // We have less trees compared to previous layer
 const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: Position): TreeLayout[] => {
   const perRow = Math.max(Math.ceil(Math.sqrt(components.length)), 1);
-  const initialX = prevPosition.x + prevSize.width + 2 * WallThickness + TreeMargin - (perRow - 1) * (2 / 3 * TreeMargin);
+  const initialX =
+    prevPosition.x + prevSize.width + 2 * WallThickness + TreeMargin - (perRow - 1) * (2 / 3 * TreeMargin);
   const maxX = initialX + perRow * (TreeWidth + TreeMargin);
   let currentX = initialX;
   let currentZ = InitialZ + WallThickness + TreeMargin;
@@ -193,7 +194,12 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
       name: module.name,
       size: {
         depth: prevGarden.size.depth,
-        width: (maxX - (prevGarden.position.x + prevGarden.size.width)) + WallThickness + TreeMargin + (perRow - 1) * TreeMargin / 2,
+        width:
+          maxX -
+          (prevGarden.position.x + prevGarden.size.width) +
+          WallThickness +
+          TreeMargin +
+          (perRow - 1) * TreeMargin / 2,
         height: GardenHeight
       },
       position: {
@@ -214,10 +220,10 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
       const t = trees[i];
       if (maxX < t.position.x) {
         maxX = t.position.x;
-      } 
+      }
       if (maxZ < t.position.z) {
         maxZ = t.position.z;
-      } 
+      }
       if (minX > t.position.x) {
         minX = t.position.x;
       }
@@ -225,10 +231,10 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
         minZ = t.position.z;
       }
     }
-    minX -= (TreeMargin + WallThickness);
-    minZ -= (TreeMargin + WallThickness);
-    maxX += (TreeMargin + WallThickness);
-    maxZ += (TreeMargin + WallThickness);
+    minX -= TreeMargin + WallThickness;
+    minZ -= TreeMargin + WallThickness;
+    maxX += TreeMargin + WallThickness;
+    maxZ += TreeMargin + WallThickness;
     const result: GardenLayout = {
       name: module.name,
       size: {
@@ -248,7 +254,7 @@ const getGardenLayout = (module: Module, prevGarden: GardenLayout | undefined) =
 };
 
 const getGardensLayout = (modules: Module[]): GardenLayout[] => {
-  console.log(cyan('💻  Calculating gardens layout...'));
+  console.log(cyan('💻 Calculating gardens layout...'));
 
   const result: GardenLayout[] = [];
   modules = modules.sort((a, b) => b.components.length - a.components.length);
@@ -260,12 +266,12 @@ const getGardensLayout = (modules: Module[]): GardenLayout[] => {
 };
 
 export const createWorldLayout = (modules: Module[]): WorldLayout => {
-  console.log(cyan('💻  Calculating layout...'));
+  console.log(cyan('💻 Calculating layout...'));
 
   const gardens = getGardensLayout(modules);
   const layout = getWorldLayout(gardens);
 
-  console.log(green('✅  Layout calculated!'));
+  console.log(green('✅ Layout calculated!'));
 
   return {
     size: layout.size,
@@ -273,4 +279,3 @@ export const createWorldLayout = (modules: Module[]): WorldLayout => {
     gardens
   };
 };
-
