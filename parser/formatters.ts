@@ -49,8 +49,8 @@ const transformTemplateAst = (template: TemplateAst) => {
       if (child instanceof ElementAst && child.endSourceSpan && child.sourceSpan) {
         const node = {
           name: child.name,
-          startOffset: child.sourceSpan.start.offset,
-          endOffset: child.endSourceSpan.end.offset,
+          startOffset: 0, //child.sourceSpan.start.offset,
+          endOffset: 0, //child.endSourceSpan.end.offset,
           children: [],
           type: child.directives.length ? NodeType.Custom : NodeType.Plain
         };

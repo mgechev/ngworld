@@ -30,10 +30,10 @@ The world embeds the following rules:
 
 ### How to Install
 
-The Christmas edition of ngworld is behind the version `0.0.19-xmas`:
+The Christmas edition of ngworld is behind the version `0.0.21-xmas`:
 
 ```bash
-npm i -g ngworld@0.0.19-xmas
+npm i -g ngworld@0.0.21-xmas
 mkdir xmas && xmas -p [PATH_TO_TSCONFIG]
 http-server .
 ```
