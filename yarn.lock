@@ -2186,9 +2186,9 @@ new-array@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/new-array/-/new-array-1.0.0.tgz#5dbc639d961eac7f1a9fbc1a7146ec12f2924fbf"
 
-ngast@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ngast/-/ngast-0.1.0.tgz#4e364f7fc0597b0955f1de75a362e53d188984a5"
+ngast@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ngast/-/ngast-0.1.2.tgz#ce78ed85fbf0f1dd0eabda4263e3d223eeaeaeb3"
 
 nice-color-palettes@^1.0.1:
   version "1.0.1"
