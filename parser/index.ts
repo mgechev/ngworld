@@ -1,12 +1,11 @@
 import { ProjectSymbols } from 'ngast';
 import { readFileSync, readFile } from 'fs';
 
-import { createProgramFromTsConfig } from './create-program';
 import { formatContext } from './formatters';
 
 export const parse = (projectPath: string) => {
   const project = new ProjectSymbols(
-    createProgramFromTsConfig(projectPath),
+    projectPath,
     {
       getSync: (path: string) => readFileSync(path).toString(),
       get: (path: string) =>
