@@ -1,6 +1,6 @@
 {
   "name": "ngworld",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "VR from an Angular app",
   "main": "index.js",
   "keywords": [
