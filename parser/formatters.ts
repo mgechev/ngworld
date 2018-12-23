@@ -49,8 +49,8 @@ const transformTemplateAst = (template: TemplateAst) => {
       if (child instanceof ElementAst && child.endSourceSpan && child.sourceSpan) {
         const node = {
           name: child.name,
-          startOffset: 0, //child.sourceSpan.start.offset,
-          endOffset: 0, //child.endSourceSpan.end.offset,
+          startOffset: child.sourceSpan.start.offset,
+          endOffset: child.endSourceSpan.end.offset,
           children: [],
           type: child.directives.length ? NodeType.Custom : NodeType.Plain
         };
@@ -60,8 +60,8 @@ const transformTemplateAst = (template: TemplateAst) => {
     };
     result = {
       name: template.name,
-      startOffset: 0,//template.sourceSpan.start.offset,
-      endOffset: 0,//template.endSourceSpan.end.offset,
+      startOffset: template.sourceSpan.start.offset,
+      endOffset: template.endSourceSpan.end.offset,
       type: template.directives.length ? NodeType.Custom : NodeType.Plain,
       children: []
     };
@@ -70,16 +70,11 @@ const transformTemplateAst = (template: TemplateAst) => {
   return result;
 };
 
-const flatten = (nodes: Node[], result: Node[] = []): Node[] =>
-  nodes.length
-    ? [].concat.call([], result.concat(nodes), [].concat.apply([], nodes.map(n => flatten(n.children, []))))
-    : [];
-
 const formatComponents = (directives: DirectiveSymbol[]) => {
   return directives
     .map(d => ({
       name: d.symbol.name,
-      template: flatten((d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n)),
+      template: (d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n),
       // Depends on the line above for
       // resolution of the absolute path.
       templateUrl: (d.getNonResolvedMetadata().template || ({} as any)).templateUrl

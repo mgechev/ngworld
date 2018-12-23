@@ -21,9 +21,9 @@
     "@types/node": "^7.0.8"
   },
   "dependencies": {
-    "@angular/compiler": "^5.1.0",
-    "@angular/compiler-cli": "5.1.0",
-    "@angular/core": "^5.1.0",
+    "@angular/compiler": "7.1.0",
+    "@angular/compiler-cli": "7.1.0",
+    "@angular/core": "7.1.0",
     "aframe": "^0.5.0",
     "aframe-controller-cursor-component": "^0.2.7",
     "aframe-extras": "^3.3.4",
@@ -33,10 +33,10 @@
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
     "ncp": "^2.0.0",
-    "ngast": "0.1.2",
-    "rxjs": "^5.5.0",
+    "ngast": "0.2.2",
+    "rxjs": "^6.0.0",
     "ts-node": "^4.0.0",
-    "typescript": "~2.5.0",
-    "zone.js": "^0.8.4"
+    "typescript": "~3.1.0",
+    "zone.js": "^0.8.26"
   }
 }
