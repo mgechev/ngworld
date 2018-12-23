@@ -1,6 +1,6 @@
 {
-  "name": "ngworld",
-  "version": "0.0.23-xmas",
+  "name": "ng-xmas",
+  "version": "0.0.1",
   "description": "VR from an Angular app",
   "main": "index.js",
   "keywords": ["vr", "angular", "compiler"],
@@ -10,7 +10,7 @@
       "rm -rf dist && tsc && cp README.md dist && mkdir dist/images && cp -r images dist && mkdir dist/src && cp node_modules/aframe-controller-cursor-component/dist/aframe-controller-cursor-component.min.js dist/src && cp node_modules/aframe/dist/aframe-master.js dist/src && cp node_modules/aframe/dist/aframe-master.js.map dist/src && cp node_modules/aframe-extras/dist/aframe-extras.min.js dist/src && cp node_modules/aframe-particle-system-component/dist/aframe-particle-system-component.min.js dist/src && cp favicon.png dist && cp -r bin dist && cp package.json dist && ts-node tools/cleanup.ts"
   },
   "bin": {
-    "ngworld": "./bin/ngworld"
+    "ng-xmas": "./bin/ngworld"
   },
   "license": "MIT",
   "devDependencies": {
