@@ -50,7 +50,7 @@ const transformTemplateAst = (template: TemplateAst) => {
         const node = {
           name: child.name,
           startOffset: child.sourceSpan.start.offset,
-          endOffset: child.endSourceSpan.end.offset,
+          endOffset: child.endSourceSpan ? child.endSourceSpan.end.offset : 0,
           children: [],
           type: child.directives.length ? NodeType.Custom : NodeType.Plain
         };
@@ -61,7 +61,7 @@ const transformTemplateAst = (template: TemplateAst) => {
     result = {
       name: template.name,
       startOffset: template.sourceSpan.start.offset,
-      endOffset: template.endSourceSpan.end.offset,
+      endOffset: template.endSourceSpan ? template.endSourceSpan.end.offset : 0,
       type: template.directives.length ? NodeType.Custom : NodeType.Plain,
       children: []
     };
