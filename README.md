@@ -34,7 +34,7 @@ The Christmas edition of ngworld is published under the `ng-xmas` package:
 
 ```bash
 npm i -g ng-xmas
-mkdir xmas && ng-xmas -p [PATH_TO_TSCONFIG]
+mkdir xmas && cd xmas && ng-xmas -p [PATH_TO_TSCONFIG]
 http-server .
 ```
 
