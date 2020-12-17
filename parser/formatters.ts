@@ -75,7 +75,7 @@ const transformTemplateAst = (template: TmplAstNode) => {
     result = {
       name: template instanceof TmplAstElement ? template.name : template.tagName,
       startOffset: template.sourceSpan.start.offset,
-      endOffset: template.endSourceSpan.end.offset,
+      endOffset: template.endSourceSpan ? template.endSourceSpan.end.offset : 0,
       type: template.inputs.length ? NodeType.Custom : NodeType.Plain,
       children: [],
     };
