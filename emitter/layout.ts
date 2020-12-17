@@ -102,9 +102,42 @@ const getWorldLayout = (gardens: GardenLayout[]) => {
   return { size: { width, height, depth }, position: { x, y, z } };
 };
 
+const calculateDepths = (node: Node) => {
+  if (!node.children.length) {
+    node.depth = 1;
+    return 1;
+  }
+  // Handle null and undefined
+  if (node.depth != undefined) {
+    return node.depth;
+  }
+  const depths = node.children.map(calculateDepths);
+  node.depth = 1 + Math.max(...depths);
+  return node.depth;
+};
+
+const getLongestPath = (template: Node[]) => {
+  const path: Node[] = [];
+  template.forEach(calculateDepths);
+
+  let currentChildren = template;
+  while (currentChildren.length) {
+    let deepestChild = currentChildren[0];
+    for (const child of currentChildren) {
+      if (child.depth > deepestChild.depth) {
+        deepestChild = child;
+      }
+    }
+    currentChildren = deepestChild.children;
+    path.push(deepestChild);
+  }
+  return path;
+};
+
 const getLeaves = (template: Node[]) => {
   const result: LeaveSet[] = [];
-  template.forEach((node: Node, idx) => {
+  const longestPath = getLongestPath(template);
+  longestPath.forEach((node: Node, idx) => {
     if (idx >= 7) {
       return;
     }
@@ -131,6 +164,7 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
   const result: TreeLayout[] = [];
   for (let i = 0; i < components.length; i += 1) {
     const c = components[i];
+    const leaves = getLeaves(c.template);
     result.push({
       name: c.name,
       templateUrl: c.templateUrl,
@@ -139,7 +173,7 @@ const getTreesLayout = (components: Component[], prevSize: Size, prevPosition: P
         y: GroundY,
         z: currentZ
       },
-      leaves: getLeaves(c.template)
+      leaves
     });
     currentX += TreeWidth + TreeMargin;
     if (currentX >= maxX) {

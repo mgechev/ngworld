@@ -28,6 +28,7 @@ export interface Node {
   children: Node[];
   startOffset: number;
   endOffset: number;
+  depth?: number;
 }
 
 export const formatContext = (context: WorkspaceSymbols) => {
