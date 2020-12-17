@@ -12,9 +12,15 @@ const error = message => {
 };
 
 const projectPath = (minimist(process.argv.slice(2)) as any).p;
+const outputPath = (minimist(process.argv.slice(2)) as any).o;
 
 if (typeof projectPath !== 'string') {
   error('Specify the path to the root "tsconfig" file of your project with the "-p" flag');
+  process.exit(1);
+}
+
+if (typeof outputPath !== 'string') {
+  error('Specify the output path "-o" flag');
   process.exit(1);
 }
 
@@ -36,11 +42,11 @@ const cp = (src: string, dest: string, cb: Function) => {
 
 const world = emit(parse(projectPath));
 
-cp(join(__dirname, 'src'), 'src', () => {
-  cp(join(__dirname, 'images'), 'images', () => {
-    cp(join(__dirname, 'favicon.png'), 'favicon.png', () => {
+cp(join(__dirname, 'src'), join(outputPath, 'src'), () => {
+  cp(join(__dirname, 'images'), join(outputPath, 'images'), () => {
+    cp(join(__dirname, 'favicon.png'), join(outputPath, 'favicon.png'), () => {
       console.log('🌍', 'Enjoy your ngworld');
-      writeFileSync('index.html', world);
+      writeFileSync(join(outputPath, 'index.html'), world);
     });
   });
 });
