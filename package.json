@@ -1,6 +1,6 @@
 {
   "name": "ng-xmas",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "VR from an Angular app",
   "main": "index.js",
   "keywords": [
