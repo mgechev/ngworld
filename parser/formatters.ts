@@ -1,5 +1,9 @@
-import { ModuleSymbol, DirectiveSymbol, ProjectSymbols } from 'ngast';
-import { TemplateAst, ElementAst } from '@angular/compiler';
+import { NgModuleSymbol, ComponentSymbol, WorkspaceSymbols } from 'ngast';
+import {
+  TmplAstNode,
+  TmplAstElement,
+  TmplAstTemplate,
+} from '@angular/compiler';
 import { cyan, green } from 'chalk';
 
 export interface Module {
@@ -15,7 +19,7 @@ export interface Component {
 
 export enum NodeType {
   Plain,
-  Custom
+  Custom,
 }
 
 export interface Node {
@@ -26,58 +30,67 @@ export interface Node {
   endOffset: number;
 }
 
-export const formatContext = (context: ProjectSymbols) => {
+export const formatContext = (context: WorkspaceSymbols) => {
   console.log(cyan('Transforming the ASTs...'));
-  const formatted = formatModules(context.getModules());
+  const formatted = formatModules(context.getAllModules());
   console.log(green('ASTs transformed!'));
   return formatted;
 };
 
-const formatModules = (modules: ModuleSymbol[]) => {
+const formatModules = (modules: NgModuleSymbol[]) => {
   return modules
-    .map(m => ({
-      name: m.symbol.name,
-      components: formatComponents(m.getDeclaredDirectives())
+    .map((m) => ({
+      name: m.name,
+      components: formatComponents(
+        m
+          .getDeclarations()
+          .filter(
+            (declaration) => declaration instanceof ComponentSymbol
+          ) as ComponentSymbol[]
+      ),
     }))
-    .filter(m => m.components.length >= 1);
+    .filter((m) => m.components.length >= 1);
 };
 
-const transformTemplateAst = (template: TemplateAst) => {
+const transformTemplateAst = (template: TmplAstNode) => {
   let result: Node = null;
-  if (template instanceof ElementAst) {
-    const addNode = (parentNode: Node, child: TemplateAst) => {
-      if (child instanceof ElementAst && child.endSourceSpan && child.sourceSpan) {
+  if (template instanceof TmplAstElement || template instanceof TmplAstTemplate) {
+    const addNode = (parentNode: Node, child: TmplAstNode) => {
+      if (
+        (child instanceof TmplAstElement || child instanceof TmplAstTemplate) &&
+        child.endSourceSpan &&
+        child.sourceSpan
+      ) {
         const node = {
-          name: child.name,
+          name: child instanceof TmplAstElement ? child.name : child.tagName,
           startOffset: child.sourceSpan.start.offset,
           endOffset: child.endSourceSpan ? child.endSourceSpan.end.offset : 0,
           children: [],
-          type: child.directives.length ? NodeType.Custom : NodeType.Plain
+          type: child.inputs.length ? NodeType.Custom : NodeType.Plain,
         };
         parentNode.children.push(node);
         child.children.map(addNode.bind(null, node));
       }
     };
     result = {
-      name: template.name,
+      name: template instanceof TmplAstElement ? template.name : template.tagName,
       startOffset: template.sourceSpan.start.offset,
-      endOffset: template.endSourceSpan ? template.endSourceSpan.end.offset : 0,
-      type: template.directives.length ? NodeType.Custom : NodeType.Plain,
-      children: []
+      endOffset: template.endSourceSpan.end.offset,
+      type: template.inputs.length ? NodeType.Custom : NodeType.Plain,
+      children: [],
     };
     template.children.forEach(addNode.bind(null, result));
   }
   return result;
 };
 
-const formatComponents = (directives: DirectiveSymbol[]) => {
-  return directives
-    .map(d => ({
-      name: d.symbol.name,
-      template: (d.getTemplateAst().templateAst || []).map(transformTemplateAst).filter(n => !!n),
-      // Depends on the line above for
-      // resolution of the absolute path.
-      templateUrl: (d.getNonResolvedMetadata().template || ({} as any)).templateUrl
+const formatComponents = (components: ComponentSymbol[]) => {
+  return components
+    .map((d) => ({
+      name: d.name,
+      template: (d.getTemplateAst() || [])
+        .map(transformTemplateAst)
+        .filter((n) => !!n),
     }))
-    .filter(d => d.template.length >= 1);
+    .filter((d) => d.template.length >= 1);
 };
